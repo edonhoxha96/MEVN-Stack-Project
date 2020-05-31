@@ -1,6 +1,5 @@
 <template>
   <div class="hello">
-    <h1>{{ msg }}</h1>
     <ul>
       <li class="nav-item">
         <router-link class="nav-link" to="/login">
@@ -18,10 +17,7 @@
 
 <script>
 export default {
-  name: "HelloWorld",
-  props: {
-    msg: String
-  }
+  name: "HomePage",
 };
 </script>
 
