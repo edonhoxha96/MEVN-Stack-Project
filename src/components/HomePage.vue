@@ -11,6 +11,10 @@
           <a>About Page</a>
         </router-link>
       </li>
+        <a href="https://react-my-burger-5639f.firebaseapp.com/">Burgeri</a>
+      
+<footer> </footer>
+     
     </ul>
   </div>
 </template>
@@ -36,5 +40,13 @@ li {
 }
 a {
   color: #42b983;
+}
+.hello {
+  background-color: grey;
+}
+.footer {
+  display:block;
+  margin: 10%;
+  background-color: #42b983;
 }
 </style>

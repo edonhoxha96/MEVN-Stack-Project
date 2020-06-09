@@ -15,6 +15,13 @@ const router = new VueRouter({
   routes
 });
 
+// Vue.component('footer', {
+//   template: '#footer',
+//   data(){
+//     return{
+//     }
+//   }
+// }) 
 new Vue({
   el: '#app',
   router,
