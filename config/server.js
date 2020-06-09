@@ -3,11 +3,12 @@ var cors = require("cors")
 var bodyParser= require("body-parser")
 var app = express()
 
+const categories = require("../src/routes/Categories.js")
+
 app.use(bodyParser.json())
 app.use(cors())
 app.use(bodyParser.urlencoded({extended: false}))
 
-app.get('/', (req, res) => res.send('Hello World!'))
 
 var port = process.env.PORT || 3000
 
