@@ -8,3 +8,5 @@ const models = require("../../config/db.js")
 router.get('/categories', function(req, res){
     Category.findAll().then(categories => res.json(categories));
 })
+
+module.exports = router
