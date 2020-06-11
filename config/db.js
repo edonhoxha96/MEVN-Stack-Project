@@ -6,7 +6,8 @@ const OrderModel = require('../models/Order')
 const ProductModel = require('../models/Product')
 const StoreModel = require('../models/Store')
 const StoreKeeperModel = require('../models/StoreKeeper')
-// const WishlistModel = require('../models/Wishlist')
+const WishlistModel = require('../models/Wishlist')
+const OrderProductModel = require('../models/OrderProduct')
 
 const sequelize = new Sequelize('emall1', 'sa', 'databaza', {
     host: 'localhost',
@@ -35,7 +36,8 @@ const Order = OrderModel(sequelize, Sequelize)
 const Product = ProductModel(sequelize, Sequelize)
 const Store = StoreModel(sequelize, Sequelize)
 const StoreKeeper = StoreKeeperModel(sequelize, Sequelize)
-// const Wishlist = WishlistModel(sequelize, Sequelize)
+const Wishlist = WishlistModel(sequelize, Sequelize)
+const OrderProduct = OrderProductModel(sequelize, Sequelize)
 
 Product.belongsTo(Category)
 Product.belongsTo(Store)
@@ -44,6 +46,7 @@ Costumer.belongsToMany(Product,{through: 'Wishlist'})
 Order.belongsTo(Costumer)
 Order.belongsToMany(Product,{through:'OrderProduct'})
 Product.belongsToMany(Order,{through:'OrderProduct'})
+
 
 sequelize.sync()
   .then(() => {
@@ -57,5 +60,7 @@ module.exports = {
   Costumer,
   Order,
   Store,
-  StoreKeeper
+  StoreKeeper,
+  Wishlist,
+  OrderProduct
 }

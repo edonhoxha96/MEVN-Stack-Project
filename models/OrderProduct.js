@@ -1,14 +1,14 @@
-const Costumer = require('./Costumer')
+const Order = require('./Order')
 const Product = require('./Product')
 
 module.exports = (sequelize, type) => { 
     return sequelize.define(
-    'Wishlist',
+    'OrderProduct',
     {
-      CostumerId:{
+      OrderId:{
           type: type.INTEGER,
           references: {
-            model: Costumer,
+            model: Order,
             key: 'id'
           }
       },
