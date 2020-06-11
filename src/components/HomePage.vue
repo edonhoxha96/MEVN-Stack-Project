@@ -1,22 +1,8 @@
 <template>
-  <div class="hello">
-    <ul>
-      <li class="nav-item">
-        <router-link class="nav-link" to="/login">
-          <a>Login</a>
-        </router-link>
-      </li>
-      <li>
-        <router-link class="nav-link" to="/about">
-          <a>About Page</a>
-        </router-link>
-      </li>
-        <a href="https://react-my-burger-5639f.firebaseapp.com/">Burgeri</a>
+  
       
-<footer> </footer>
-     
-    </ul>
-  </div>
+     <h1> </h1>
+   
 </template>
 
 <script>
@@ -44,9 +30,5 @@ a {
 .hello {
   background-color: grey;
 }
-.footer {
-  display:block;
-  margin: 10%;
-  background-color: #42b983;
-}
+
 </style>
