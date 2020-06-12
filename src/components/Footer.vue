@@ -44,13 +44,19 @@
           <div class="col-md-3 col-sm-6 col-xs 12 segment-three">
             <h3>Follow Us</h3>
             <p>Social sites where you can follow us!</p>
-            <a href="https://www.facebook.com"><i class="fa fa-facebook"> </i></a>
-            <a href="https://www.instagram.com"><i class="fa fa-instagram"> </i></a>
-            <a href="https://www.twitter.com"><i class="fa fa-twitter"> </i></a>
+            <a href="https://www.facebook.com">
+              <i class="fa fa-facebook"></i>
+            </a>
+            <a href="https://www.instagram.com">
+              <i class="fa fa-instagram"></i>
+            </a>
+            <a href="https://www.twitter.com">
+              <i class="fa fa-twitter"></i>
+            </a>
           </div>
           <div class="col-md-3 col-sm-6 col-xs 12 segment-four">
             <h3>Our news</h3>
-            <form action="">
+            <form action>
               <input type="email" />
               <input type="submit" value="Subscribe" />
             </form>
@@ -65,21 +71,20 @@
 export default {
   data() {
     return {
-      title: "Webapp",
+      title: "Webapp"
     };
-  },
+  }
 };
 </script>
 
 <style lang="scss" scoped>
-
 .page-footer {
+  margin-top: 30px;
   background-color: #111;
   padding: 80px 0;
   bottom: 0%;
-  position: absolute;
+  position: relative;
   font-family: Poppins;
-
 }
 .footer-row {
   display: flex;
@@ -93,16 +98,14 @@ export default {
 
 h3 {
   color: #fff;
- justify-content: center;
+  justify-content: center;
   font-family: Poppins;
 }
-.segment-three a{
+.segment-three a {
   padding: 10px;
   font-size: 30px;
 }
-.segment-two h3{
-  padding-left:15%
+.segment-two h3 {
+  padding-left: 15%;
 }
-
-
 </style>

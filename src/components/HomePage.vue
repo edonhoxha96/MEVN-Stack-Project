@@ -1,5 +1,23 @@
 <template>
-  <h1></h1>
+  <div class="wrapper">
+    <section class="items">
+      <div class="produkti">
+        <img src="https://source.unsplash.com/random/200x200" alt />
+        <h3>Produkti</h3>
+        <span>pershkrimi i produktit</span>
+      </div>
+
+      <img src="https://source.unsplash.com/random/201x200" alt />
+      <img src="https://source.unsplash.com/random/203x200" alt />
+      <img src="https://source.unsplash.com/random/204x200" alt />
+      <img src="https://source.unsplash.com/random/205x200" alt />
+      <img src="https://source.unsplash.com/random/206x200" alt />
+      <img src="https://source.unsplash.com/random/207x200" alt />
+      <img src="https://source.unsplash.com/random/208x200" alt />
+      <img src="https://source.unsplash.com/random/209x200" alt />
+      <img src="https://source.unsplash.com/random/202x200" alt />
+    </section>
+  </div>
 </template>
 
 <script>
@@ -10,21 +28,23 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h3 {
-  margin: 40px 0 0;
+.wrapper {
+  display: grid;
+  grid-gap: 20px;
 }
-ul {
-  list-style-type: none;
-  padding: 0;
+.produkti{
+  text-align: left;
 }
-li {
-  display: inline-block;
-  margin: 0 10px;
+.produkti h3{
+  cursor: pointer;
 }
-a {
-  color: #42b983;
+.items {
+  display: grid;
+  grid-gap: 35px;
+  padding: 20px 5%;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
 }
-.hello {
-  background-color: grey;
+.items img {
+  width: 100%;
 }
 </style>
