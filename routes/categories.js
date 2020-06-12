@@ -2,6 +2,7 @@ const express = require("express")
 const router = express()
 const cors = require("cors")
 const {Category} = require('../config/db')
+const { model } = require("mongoose")
 
 
 router.use(cors())
@@ -17,9 +18,13 @@ router.get('/api/categories/:id', (req, res) => {
     }).then(categories => res.json(categories))
 })
 
-router.post('/api/categories', (req, res) => {
+router.post('/api/categories/post', (req, res) => {
     Category.create(req.body)
         .then(categories => res.json(categories))
 })
+
+// router.get('/api/categories/parents', (req, res) => {
+//     Category.findAll().then(categories => res.json(categories))
+// })
 
 module.exports = router

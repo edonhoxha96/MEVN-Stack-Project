@@ -5,8 +5,11 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 import App from './App.vue'
 import VueRouter from 'vue-router'
 import { routes } from './routes'
+import VueAxios from 'vue-axios'
+import axios from 'axios'
 
 Vue.config.productionTip = false;
+Vue.use(VueAxios,axios);
 Vue.use(VueRouter);
 Vue.use(BootstrapVue);
 Vue.use(IconsPlugin);

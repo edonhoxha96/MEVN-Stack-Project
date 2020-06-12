@@ -14,14 +14,12 @@
           type: type.STRING,
           allowNull: false
       },
-      subcategories:{
-          type: type.STRING
-        //   get() {
-        //     return this.getDataValue('subcategories').split(';')
-        //   },
-        //   set(val) {
-        //    this.setDataValue('subcategories',val.join(';'));
-        // },
+      parentId: {
+        type: type.INTEGER,
+        references: {
+          model: 'Categories',
+          key: 'id'
+      }
       }
     }
   )

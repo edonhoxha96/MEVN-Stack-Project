@@ -5,6 +5,7 @@ import Register from './components/Register.vue';
 import Politikat from './components/Politikat';
 import Kushtet from './components/Kushtet';
 import Content from './components/Content';
+import AddCategory from './components/addCategory'
 
 export const routes = [
    { path: '/', name: 'home', component: HomePage },
@@ -14,4 +15,5 @@ export const routes = [
    { path: '/kushtet', name: 'kushtet', component: Kushtet },
    { path: '/content', name: 'content', component: Content },
    { path: '/about', component: About },
+   { path: '/addCategory', component: AddCategory}
 ]

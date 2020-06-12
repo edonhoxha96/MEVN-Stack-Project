@@ -22,6 +22,12 @@ module.exports = (sequelize, type) => {
       size:{
           type: type.STRING
       },
+      rating:{
+        type: type.STRING
+      },
+      stock:{
+        type: type.STRING
+      },
       brand:{
           type: type.STRING,
           allowNull: false
