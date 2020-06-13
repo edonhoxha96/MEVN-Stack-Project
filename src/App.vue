@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <webapp-header />
-    <webapp-navbar />
+    <!-- <webapp-navbar /> -->
     <router-view></router-view>
     <webapp-footer />
   </div>
