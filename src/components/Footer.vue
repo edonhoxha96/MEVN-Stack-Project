@@ -18,27 +18,26 @@
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos
               voluptate, totam tenetur consequatur voluptatem repudiandae,
               officia numquam quam laudantium eius architecto blanditiis,
-              corporis rem maxime illo dolor esse. Ipsum, maiores!
             </p>
           </div>
           <div class="col-md-3 col-sm-6 col-xs 12 segment-two">
-            <h3>Navigate through pages!</h3>
-            <ul>
-              <ul>
+            <h3>Navigate</h3>
+            <ul class="lists">
+              <li>
                 <router-link class="nav-link" to="/about">
                   <a>About Page</a>
                 </router-link>
-              </ul>
-              <ul>
+              </li>
+              <li>
                 <router-link class="nav-link" to="/politikat">
                   <a>Politikat e privatesis</a>
                 </router-link>
-              </ul>
-              <ul>
+              </li>
+              <li>
                 <router-link class="nav-link" to="/about">
                   <a>Kushtet e perdorimit</a>
                 </router-link>
-              </ul>
+              </li>
             </ul>
           </div>
           <div class="col-md-3 col-sm-6 col-xs 12 segment-three">
@@ -56,9 +55,9 @@
           </div>
           <div class="col-md-3 col-sm-6 col-xs 12 segment-four">
             <h3>Our news</h3>
-            <form action>
-              <input type="email" />
-              <input type="submit" value="Subscribe" />
+            <form class="form-group" action>
+              <input class="form-control mb-2" type="email" />
+              <input class="btn btn-dark btn-block" type="submit" value="Subscribe" />
             </form>
           </div>
         </div>
@@ -78,28 +77,31 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+*{
+  list-style: none
+}
 .page-footer {
   margin-top: 30px;
-  background-color: #111;
-  padding: 80px 0;
-  bottom: 0%;
+  background-color: #343a40;
+  padding: 45px 0;
   position: relative;
-  font-family: Poppins;
 }
 .footer-row {
   display: flex;
   flex-direction: row;
 }
-.p {
-  color: rgb(159, 156, 187);
+p {
+  color: rgb(248, 231, 231);
   line-height: 25px;
   font-size: 15px;
+}
+.lists a{
+  color: rgb(248, 231, 231);
 }
 
 h3 {
   color: #fff;
   justify-content: center;
-  font-family: Poppins;
 }
 .segment-three a {
   padding: 10px;

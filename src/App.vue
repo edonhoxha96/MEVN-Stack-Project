@@ -12,14 +12,14 @@
 // import HomePage from './components/HomePage.vue'
 import footer from './components/Footer.vue'
 import header from './components/Header.vue'
-import navbar from './components/Nav-bar.vue'
+// import navbar from './components/Nav-bar.vue'
 
 export default {
   name: 'App',
   components: {
     'webapp-footer': footer,
     'webapp-header': header,
-    'webapp-navbar': navbar,
+    // 'webapp-navbar': navbar,
   //   HomePage
   },
 data() {
