@@ -9,7 +9,7 @@ const StoreKeeperModel = require('../models/StoreKeeper')
 const WishlistModel = require('../models/Wishlist')
 const OrderProductModel = require('../models/OrderProduct')
 
-const sequelize = new Sequelize('emall1', 'sa', 'databaza', {
+const sequelize = new Sequelize('emall', 'sa', '159862487', {
     host: 'localhost',
     dialect: 'mssql',
     pool: {
