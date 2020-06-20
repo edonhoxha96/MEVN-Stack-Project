@@ -2,7 +2,6 @@ const express = require("express")
 const router = express()
 const cors = require("cors")
 const {Category} = require('../config/db')
-const { model } = require("mongoose")
 
 
 router.use(cors())
