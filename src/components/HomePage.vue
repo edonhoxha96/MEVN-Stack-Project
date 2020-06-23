@@ -29,11 +29,25 @@ import axios from "axios";
 
 export default {
   name: "HomePage",
-  data(){
+  data() {
     return {
-      products: [],
-    }
-  }
+      products: []
+    };
+  },
+  // created() {
+  //   axios.get(`http://localhost:4000/products`)
+  //   .then(response => {
+  //     this.products = response.data;
+  //   });
+  // },
+  // methods:{
+  //     getPath(picturepath){
+  //       if(picturepath == null) {
+  //         return
+  //       }
+  //       return require(`../assets/${picturepath}`)
+  //     }
+  //   }
 };
 </script>
 
