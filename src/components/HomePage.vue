@@ -1,48 +1,54 @@
 <template>
-  <div class="wrapper">
-    <section class="items">
-      <div class="produkti">
-        <img src="https://source.unsplash.com/random/200x200" alt />
-        <h3>Produkti</h3>
-        <span>pershkrimi i produktit</span>
+  <div class="container m-9">
+    <section class="card-columns mt-5 items">
+      <div class="card karta">
+        <img class="card-img-top" src="https://source.unsplash.com/random/201x200" alt />
+        <div class="card-body">
+          <h4 class="card-title">Card Titile</h4>
+          <!-- <p class="card-text">This is the test of a short preview for a product description</p> -->
+          <a href class="btn btn-success btn-block">Read description</a>
+        </div>
       </div>
 
-      <img src="https://source.unsplash.com/random/201x200" alt />
-      <img src="https://source.unsplash.com/random/203x200" alt />
-      <img src="https://source.unsplash.com/random/204x200" alt />
-      <img src="https://source.unsplash.com/random/205x200" alt />
-      <img src="https://source.unsplash.com/random/206x200" alt />
-      <img src="https://source.unsplash.com/random/207x200" alt />
-      <img src="https://source.unsplash.com/random/208x200" alt />
-      <img src="https://source.unsplash.com/random/209x200" alt />
-      <img src="https://source.unsplash.com/random/202x200" alt />
+      <!-- **********     WHEN READY REPLACE WITH THE ONE BELOW    ********** -->
+
+      <!-- <div class="card karta" v-for="product in products" :key="product.id">
+        <img class="card-img-top" src="https://source.unsplash.com/random/201x200" alt />
+        <div class="card-body">
+          <h4 class="card-title">{{product.name}}</h4>
+          <p class="card-text">{{product.description}}</p>
+          <router-link :to="{name: '/', params: { id: product._id }}" class="btn btn-success btn-block">Read description</router-link>
+        </div>
+      </div>-->
     </section>
   </div>
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
-  name: "HomePage"
+  name: "HomePage",
+  data(){
+    return {
+      products: [],
+    }
+  }
 };
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .wrapper {
   display: grid;
   grid-gap: 20px;
 }
-.produkti{
-  text-align: left;
-}
-.produkti h3{
-  cursor: pointer;
-}
 .items {
   display: grid;
   grid-gap: 35px;
-  padding: 20px 5%;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  max-width: 200px;
+}
+.karta {
+  width: 100%;
 }
 .items img {
   width: 100%;

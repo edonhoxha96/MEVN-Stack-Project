@@ -7,26 +7,28 @@ export default {
   },
 
   methods: {
-      pressed (){
-          alert('pressed')
-      }
+    pressed() {
+      alert("pressed");
+    }
   },
 
   render(h) {
     return (
-        <div>
-            hello from JSX 
-            <h1>{this.title}</h1>
-            <button class="button" on-click={this.pressed}>Press me</button>
-        </div>
-    )
+      <div>
+        <h2>{this.title}</h2>
+        <h1>hello from JSX</h1>
+        <button class="button" on-click={this.pressed}>
+          Press me
+        </button>
+      </div>
+    );
   }
 };
 </script>
 
 <style lang="scss" scoped>
-.button{
-    color: red;
-    background-color: white;
+.button {
+  color: red;
+  background-color: white;
 }
 </style>
