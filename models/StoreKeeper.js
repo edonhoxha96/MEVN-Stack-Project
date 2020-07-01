@@ -1,3 +1,5 @@
+var bcrypt = require("bcrypt");
+
 module.exports = (sequelize, type) => { 
     return sequelize.define(
     'StoreKeeper',
@@ -22,15 +24,6 @@ module.exports = (sequelize, type) => {
       },
       password:{
           type: type.STRING,
-          freezeTableName: true,
-          instanceMethods: {
-              generateHash(password) {
-                  return bcrypt.hash(password, bcrypt.genSaltSync(8));
-              },
-              validPassword(password) {
-                  return bcrypt.compare(password, this.password);
-              }
-          },
           allowNull:false
       }
     }

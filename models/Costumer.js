@@ -1,3 +1,5 @@
+var bcrypt = require("bcrypt");
+
 module.exports = (sequelize, type) => { 
     return sequelize.define(
     'Costumer',
@@ -22,15 +24,6 @@ module.exports = (sequelize, type) => {
       },
       password:{
           type: type.STRING,
-          freezeTableName: true,
-          instanceMethods: {
-              generateHash(password) {
-                  return bcrypt.hash(password, bcrypt.genSaltSync(8));
-              },
-              validPassword(password) {
-                  return bcrypt.compare(password, this.password);
-              }
-          },
           allowNull:false
       },
       address:{
@@ -41,6 +34,19 @@ module.exports = (sequelize, type) => {
           type: type.STRING,
           allowNull: false
       }
+    },
+    {
+        hooks:{
+            beforeCreate: async function(user, options) {
+                const salt = await bcrypt.genSalt(10); //whatever number you want
+                user.password = await bcrypt.hash(user.password, salt);
+            }
+          },
+          instanceMethods:{
+              validPassword:async function (password){
+                return await bcrypt.compare(password, this.password);
+              }
+          } 
     }
   )
 }

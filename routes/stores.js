@@ -17,6 +17,13 @@ router.get('/api/stores/:id', (req, res) => {
     }).then(stores => res.json(stores))
 })
 
+// router.get('/api/stores', storeName,(res) => {
+//     Store.findOne({
+//         where:{ name: storeName, },
+//     }).then(stores => res.json(stores))
+// })
+
+
 router.post('/api/stores', (req, res) => {
     Store.create(req.body)
         .then(stores => res.json(stores))

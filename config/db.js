@@ -8,8 +8,12 @@ const StoreModel = require('../models/Store')
 const StoreKeeperModel = require('../models/StoreKeeper')
 const WishlistModel = require('../models/Wishlist')
 const OrderProductModel = require('../models/OrderProduct')
+const PaymentModel = require('../models/Payment')
+const ReviewModel = require('../models/Review')
 
-const sequelize = new Sequelize('emall', 'sa', '159862487', {
+
+
+const sequelize = new Sequelize('emall4', 'sa', 'databaza', {
     host: 'localhost',
     dialect: 'mssql',
     pool: {
@@ -38,14 +42,21 @@ const Store = StoreModel(sequelize, Sequelize)
 const StoreKeeper = StoreKeeperModel(sequelize, Sequelize)
 const Wishlist = WishlistModel(sequelize, Sequelize)
 const OrderProduct = OrderProductModel(sequelize, Sequelize)
+const Payment = PaymentModel(sequelize, Sequelize)
+const Review = ReviewModel(sequelize, Sequelize)
+
 
 Product.belongsTo(Category)
 Product.belongsTo(Store)
 StoreKeeper.belongsTo(Store)
-Costumer.belongsToMany(Product,{through: 'Wishlists'})
+Costumer.belongsToMany(Product,{through: 'Wishlist'})
 Order.belongsTo(Costumer)
 Order.belongsToMany(Product,{through:'OrderProduct'})
 Product.belongsToMany(Order,{through:'OrderProduct'})
+Costumer.belongsToMany(Product,{through:'Review'})
+Product.belongsToMany(Costumer,{through:'Review'})
+Payment.belongsTo(Order)
+
 
 
 sequelize.sync()
@@ -62,5 +73,7 @@ module.exports = {
   Store,
   StoreKeeper,
   Wishlist,
-  OrderProduct
+  OrderProduct,
+  Payment,
+  Review
 }

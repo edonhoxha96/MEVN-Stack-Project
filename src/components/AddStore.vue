@@ -4,13 +4,10 @@
     <hr />
     <form @submit="onSubmit">
       <div class="form-group">
-        <input class="form-control" type="text" id="title" placeholder="Name" v-model="category.name"/>
+        <input class="form-control" type="text" id="title" placeholder="Name" v-model="store.name"/>
       </div>
-      <div class="form-group">
-          <label for="">Parent Category</label>
-          <select name="category/subcategory" v-model="category.parentId" >
-            <option v-for="category in categories" :key="category.id" :value = "category.id">{{category.name}}</option>
-          </select>
+      <div>
+        <p>My File Selector: <file-select v-model="store.logo"></file-select></p>
       </div>
       <br/>
       <input type="submit" id="submit" class="btn btn-secondary btn-block" value="Create">
@@ -21,28 +18,23 @@
 
 <script>
 import axios from 'axios'
+import FileSelect from './FileSelect'
 
 
 export default {
-  name: 'AddCategory',
+  name: 'AddStore',
   components:{
+      FileSelect
   },
   data(){
     return {
-      category:{},
-      categories:[]
+      store:{}
     }
-  },
-  created(){
-      axios.get(`http://localhost:3000/emall/api/categories`)
-        .then(response => {
-        this.categories = response.data;
-          });
   },
   methods:{
     onSubmit (evt) {
       evt.preventDefault()
-      axios.post(`http://localhost:3000/emall/api/categories/post`, this.category)
+      axios.post(`http://localhost:3000/emall/api/stores`, this.store)
       .then(function (response) {
         console.log(response);
         location.reload()

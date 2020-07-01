@@ -1,6 +1,8 @@
+const Order = require('./Order')
+
 module.exports = (sequelize, type) => { 
     return sequelize.define(
-    'Store',
+    'Payment',
     {
       id:{
           type: type.INTEGER,
@@ -8,12 +10,19 @@ module.exports = (sequelize, type) => {
           autoIncrement: true,
           allowNull: false
       },
-      name:{
+      bankNumber:{
           type: type.STRING,
           allowNull: false
       },
-      logo:{
-          type: type.STRING
+      totalPrice:{
+          type: type.DOUBLE,
+          allowNull: false
+      },
+      paymentMethod:{
+        type: type.ENUM('Cash','Online')
+      },
+      status:{
+          type: type.ENUM('Done','Pending', 'Failed')
       }
     }
   )
