@@ -13,7 +13,7 @@ const ReviewModel = require('../models/Review')
 
 
 
-const sequelize = new Sequelize('emall4', 'sa', 'databaza', {
+const sequelize = new Sequelize('emall4', 'sa', '159862487', {
     host: 'localhost',
     dialect: 'mssql',
     pool: {
