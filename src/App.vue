@@ -7,7 +7,7 @@
   </div>
   
 </template>
-
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"> </script>
 <script>
 // import HomePage from './components/HomePage.vue'
 import footer from './components/Footer.vue'
