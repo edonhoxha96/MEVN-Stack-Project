@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container kontenti">
     <h1 class="mb-5">Login</h1>
     <div class="form-group">
       <label for="email">Email</label>
@@ -16,6 +16,11 @@
 </template>
 
 <style scoped>
+
+.kontenti{
+  max-width: 600px;
+}
+
 .flex {
    display: flex;
    align-items: center;

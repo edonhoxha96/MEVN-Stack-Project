@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container kontenti">
      
     <h1 class="mb-5">Register</h1>
 
@@ -8,7 +8,7 @@
       <input class="form-control" type="text" />
     </div>
     <div class="form-group">
-      <label>Ebiemri</label>
+      <label>Mbiemri</label>
       <input class="form-control" type="text" />
     </div>
     <div class="form-group">
@@ -26,3 +26,10 @@
     <button class="btn btn-primary btn-block" type="submit">Register</button>
   </div>
 </template>
+
+<style scoped>
+
+.kontenti{
+  max-width: 600px;
+}
+</style>
