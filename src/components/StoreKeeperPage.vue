@@ -3,16 +3,23 @@
     <h1>Hello {{user.firstName}}</h1>
     <div><ul>
       <li><button @click="logout">LogOut</button></li>
-      <li><router-link :to="{path: '/addStore'}">Add a Store</router-link></li>
-      <li><router-link :to="{path: '/addStoreKeeper'}">Add a StoreKeeper</router-link></li>
+      <li><router-link :to="{path: '/addProduct'}">Add a Product</router-link></li>
     </ul></div>
     
-    <div v-for="store in stores" :key= "store.id">
+    <div>
       <h3>{{store.name}}</h3>
       <div v-if="store.logo != null">
       <img :src="getPath(store.logo)" alt="logo" width="500px" height="400px">
       </div>
     </div>
+    <hr>
+    <h2>Your Products:</h2>
+  <div v-for="product in products" :key="product.id">
+      <div>{{product.name}}</div>
+      <div>{{product.price}}</div>
+      <div>{{product.rating}}</div>
+      <router-link :to="{name: 'editproduct', params: { id: product.id }}">Edit</router-link>
+  </div>
   </div>
 </template>
 
@@ -21,10 +28,11 @@ import axios from 'axios'
 import {mapState} from 'vuex'
 
 export default {
-  name: "AdminPage",
+  name: "StoreKeeperPage",
   data(){
     return{
-      stores:[]
+      store:{},
+      products:[]
     }
   },
   computed:{
@@ -32,14 +40,17 @@ export default {
   },
   mounted(){
     this.$store.dispatch('loadCurrentUser')
-  },
-  created(){
-      axios.get(`http://localhost:3000/emall/api/stores`)
+
+    axios.get(`http://localhost:3000/emall/api/stores/${this.user.StoreId}`)
         .then(response => {
-        this.stores = response.data;
+        this.store = response.data;
           });
+
+    axios.get(`http://localhost:3000/emall/api/storeproducts/${this.user.StoreId}`)
+        .then(response => {
+        this.products = response.data;
+          });      
   },
-  
   methods:{
     getPath(picturepath){
         if(picturepath == null) {
@@ -50,6 +61,9 @@ export default {
       logout(){
         this.$store.dispatch('logoutUser')
         this.$router.push('userLogin')
+      },
+      loadStores(){
+        
       }
     }
   }
@@ -72,6 +86,7 @@ li {
 a {
   color: #42b983;
 }
+
 .hello {
   background-color: grey;
 }
