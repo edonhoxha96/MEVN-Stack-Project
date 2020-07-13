@@ -9,8 +9,7 @@ module.exports = (sequelize, type) => {
           allowNull: false
       },
       shippingAddress:{
-          type: type.STRING,
-          allowNull: false
+          type: type.STRING
       },
       totalPrice:{
           type: type.DOUBLE,

@@ -21,7 +21,7 @@
         <li v-for="(product, index) in products" :key="index" class="product">
         <img :src="getPath(product.image)" alt="">
         <router-link to="/product-details">
-            <h2 class="product-name" >
+            <h2 class="product-name" @click="addCurrentProduct(product)" >
             {{ product.name }}
             </h2>
         </router-link>
@@ -68,7 +68,7 @@ export default {
     ...mapActions([
       'addProduct',
       'showOrHiddenPopupCart',
-    //   'currentProduct',
+      'currentProduct',
     ]),
     addProductToCart(product) {
       this.addProduct(product);
@@ -86,9 +86,9 @@ export default {
       this.showOrHiddenPopupCart();
     },
     
-    // addCurrentProduct(product) {
-    //   this.currentProduct(product);
-    // },
+    addCurrentProduct(product) {
+      this.currentProduct(product);
+    },
   },
   computed: {
     ...mapGetters([

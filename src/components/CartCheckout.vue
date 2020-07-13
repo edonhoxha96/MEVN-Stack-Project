@@ -3,7 +3,7 @@
   <div class="checkout-box">
     <ul class="checkout-list">
       <transition-group name="fade">
-      <li v-for="(product, index) in getProductsInCart" :key="index" class="checkout-product">
+      <li v-for="product in getProductsInCart" :key="product.id" class="checkout-product">
         <img :src="product.image" alt="" class="product-image">
         <h3 class="product-name">{{ product.name }}</h3>
         <span class="product-price">R$ {{ product.price }},00 </span>
@@ -15,15 +15,26 @@
       <h3>No products...</h3>
       <router-link to="./">Back to list of products</router-link>
     </div>
+    <div>
     <h3 class="total" v-if="hasProduct()">
       Total: R$ {{ totalPrice() }}, 00
     </h3>
+    <btn btnColor="btn btn-large btn-info"
+          @click.native="makePayment()">
+        Make Payment
+      </btn>
+    </div>
   </div>
 </template>
 
 <script>
 import { mapGetters, mapActions } from 'vuex';
+import btn from '@/components/Btn.vue'
+
 export default {
+  components:{
+    btn
+  },
   computed: {
     ...mapGetters([
       'getProductsInCart',
@@ -43,6 +54,9 @@ export default {
     remove(index) {
       this.removeProduct(index);
     },
+    makePayment(){
+      this.$router.push('payment')
+    }
   },
 };
 </script>

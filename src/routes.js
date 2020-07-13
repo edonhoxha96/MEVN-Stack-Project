@@ -6,7 +6,6 @@ import AddStore from './components/AddStore';
 import AddUser from './components/AddUser';
 import AdminPage from './components/AdminPage';
 import UserLogin from './components/UserLogin';
-import AddStoreKeeper from './components/AddStoreKeeper';
 import StoreKeeperPage from './components/StoreKeeperPage';
 import EditProduct from './components/EditProduct';
 import Register from './components/Register';
@@ -14,6 +13,8 @@ import Login from './components/Login';
 import Order from './components/Order';
 import Products from './components/Products';
 import CartCheckout from './components/CartCheckout'
+import ProductDetail from './components/ProductDetail'
+import Payment from './components/Payment'
 
 
 export const routes = [
@@ -25,7 +26,6 @@ export const routes = [
     { path: '/addUser', component: AddUser, meta: {requiresAuth: true, role: 1}},
     { path: '/adminPage', name:'adminPage' ,component: AdminPage, meta: {requiresAuth: true, role: 1}},
     { path: '/userLogin',name: 'loginUser', component: UserLogin},
-    { path: '/addStoreKeeper', component: AddStoreKeeper, meta: {requiresAuth: true, role: 1}},
     { path: '/storeKeeperPage',name: 'skPage' , component: StoreKeeperPage, meta: {requiresAuth: true, role: 2}},
     { path: '/editProduct',name: 'editproduct' , component: EditProduct, meta: {requiresAuth: true, role: 2}},
     { path: '/register', name:'register', component: Register},
@@ -33,5 +33,7 @@ export const routes = [
     { path: '/order', name:'order', component: Order, meta: {requiresAuth: true, role: 3}},
     { path: '/products', name:'products', component: Products},
     { path: '/cart-checkout', name:'cart-checkout', component: CartCheckout},
+    { path: '/product-details', name:'product-details', component: ProductDetail},
+    { path: '/payment', name:'payment', component: Payment},
 
 ]
