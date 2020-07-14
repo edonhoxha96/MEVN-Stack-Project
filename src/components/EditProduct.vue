@@ -1,42 +1,42 @@
 <template>
   <div class="container">
-    <h1>Add Product</h1>
+    <h1>Edit Product</h1>
     <hr />
     <form @submit="onSubmit">
       <div class="form-group">
-        <input class="form-control" type="text" id="name" placeholder="Name" v-model="product.name"/>
+        <input class="form-control" type="text" id="name" :placeholder="product.name" v-model="product.name"/>
       </div>
       <div>
-        <p>My File Selector: <file-select v-model="product.image"></file-select></p>
+        <p>My File Selector: <file-select :placeholder="product.logo" v-model="product.image"></file-select></p>
       </div>
       <div class="form-group">
-        <input type="number" placeholder="price" step="0.01" min="0" v-model="product.price">
+        <input type="number" :placeholder="product.price" step="0.01" min="0" v-model="product.price">
       </div>
       <div class="form-group">
-        <input class="form-control" type="text" id="color" placeholder="color" v-model="product.color"/>
+        <input class="form-control" type="text" id="color" :placeholder="product.color" v-model="product.color"/>
       </div>
       <div class="form-group">
-        <input class="form-control" type="text" id="size" placeholder="size" v-model="product.size"/>
+        <input class="form-control" type="text" id="size" :placeholder="product.size" v-model="product.size"/>
       </div>
       <div class="form-group">
-        <input class="form-control" type="number" id="rating" placeholder="rating" min="0" max="10" v-model="product.rating"/>
+        <input class="form-control" type="number" id="rating" :placeholder="product.rating" min="0" max="10" v-model="product.rating"/>
       </div>
       <div class="form-group">
-        <input class="form-control" type="number" id="stock" placeholder="stock" v-model="product.stock"/>
+        <input class="form-control" type="number" id="stock" :placeholder="product.stock" v-model="product.stock"/>
       </div>
       <div class="form-group">
-        <input class="form-control" type="text" id="brand" placeholder="brand" v-model="product.brand"/>
+        <input class="form-control" type="text" id="brand" :placeholder="product.brand" v-model="product.brand"/>
       </div>
       <div class="form-group">
           <label for="store">Store</label>
-          <select name="store" placeholder="store" v-model="product.StoreId" >
+          <select name="store" :placeholder="product.StoreId" v-model="product.StoreId" >
             <option v-for="store in stores" :key="store.id" :value = "store.id">{{store.name}}</option>
           </select>
       </div>
       <br/>
       <div class="form-group">
           <label for="category/subcategory">Category</label>
-          <select name="category/subcategory" placeholder="category" v-model="product.CategoryId" >
+          <select name="category/subcategory" :placeholder="product.CategoryId" v-model="product.CategoryId" >
             <option v-for="category in categories" :key="category.id" :value = "category.id">{{category.name}}</option>
           </select>
       </div>
@@ -55,7 +55,7 @@ import FileSelect from './FileSelect'
 
 
 export default {
-  name: 'AddProduct',
+  name: 'EditProduct',
   components:{
     FileSelect
   },
@@ -85,11 +85,11 @@ export default {
   methods:{
     onSubmit (evt) {
       evt.preventDefault()
-      axios.put(`http://localhost:3000/emall/api/products`, this.product)
+      axios.put(`http://localhost:3000/emall/api/products/update/${this.$route.params.id}`, this.product)
       .then(function (response) {
         console.log(response);
-        location.reload()
         })
+      this.$router.push('storeKeeperPage')  
     }
   }
 }

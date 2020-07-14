@@ -5,7 +5,7 @@
         {{errorMessage}}
     </div>
     
-    <form @submit.prevent="login()">
+    <form @submit.prevent="loginAdmin()">
             <div><input type="text" placeholder="email" v-model="currentUser.email" required></div>
             <div><input type="password" placeholder="password" v-model="currentUser.password" required></div>
             <button type="submit">Login</button>
@@ -28,10 +28,10 @@ export default {
         }
     },
     methods:{
-       async login(){
+       async loginAdmin(){
             
                 // console.log(this.currentUser)
-                await axios.post(`http://localhost:3000/emall/api/login`, this.currentUser
+                await axios.post(`http://localhost:3000/emall/api/loginUser`, this.currentUser
                 ).then(response => {
                     this.user = response.data                     
                 })
@@ -41,7 +41,13 @@ export default {
             
             if(!(this.user.firstName == undefined)){
                 this.$store.dispatch('loginUser', this.user)
-                this.$router.push('/')
+                if(this.user.RoleId == 1){
+                this.$router.push('adminPage')
+                }
+                if(this.user.RoleId == 2){
+                // this.$router.push({name:'skPage', params: { id: this.user.StoreId }})
+                this.$router.push('storeKeeperPage')
+                }
             }
         }
     }

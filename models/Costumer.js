@@ -31,22 +31,12 @@ module.exports = (sequelize, type) => {
           allowNull: false
       },
       phone:{
+          type: type.STRING
+      },
+      bank:{
           type: type.STRING,
           allowNull: false
       }
-    },
-    {
-        hooks:{
-            beforeCreate: async function(user, options) {
-                const salt = await bcrypt.genSalt(10); //whatever number you want
-                user.password = await bcrypt.hash(user.password, salt);
-            }
-          },
-          instanceMethods:{
-              validPassword:async function (password){
-                return await bcrypt.compare(password, this.password);
-              }
-          } 
     }
   )
 }

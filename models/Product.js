@@ -12,10 +12,14 @@ module.exports = (sequelize, type) => {
           type: type.STRING,
           allowNull: false
       },
+      description:{
+        type: type.TEXT,
+        allowNull: true
+      },
       image:{
         type: type.STRING,
         allowNull: false
-    },
+      },
       price:{
           type: type.DOUBLE,
           allowNull: false
@@ -30,7 +34,8 @@ module.exports = (sequelize, type) => {
         type: type.STRING
       },
       stock:{
-        type: type.STRING
+        type: type.STRING,
+        allowNull: false
       },
       brand:{
           type: type.STRING,

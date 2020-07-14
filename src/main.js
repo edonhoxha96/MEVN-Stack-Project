@@ -1,7 +1,6 @@
+import 'bootstrap'
+import 'bootstrap/dist/css/bootstrap.min.css'
 import Vue from 'vue'
-import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
-import 'bootstrap/dist/css/bootstrap.css'
-import 'bootstrap-vue/dist/bootstrap-vue.css'
 import App from './App.vue'
 import VueRouter from 'vue-router'
 import { routes } from './routes'
@@ -9,23 +8,32 @@ import VueAxios from 'vue-axios'
 import axios from 'axios'
 import store from './store'
 
-Vue.config.productionTip = false;
+Vue.config.productionTip = false
 Vue.use(VueAxios,axios);
 Vue.use(VueRouter);
-Vue.use(BootstrapVue);
-Vue.use(IconsPlugin);
 
 const router = new VueRouter({
   routes
 });
 
-// Vue.component('footer', {
-//   template: '#footer',
-//   data(){
-//     return{
-//     }
-//   }
-// }) 
+router.beforeEach((to, from, next) => {
+  if(to.matched.some(record => record.meta.requiresAuth)) {
+    if(store.getters.isLoggedIn) {
+      if(to.matched.some(record => record.meta.role == store.getters.hasRole)) { 
+        next()
+        return
+      }
+    }
+    if(to.matched.some(record => record.meta.role == 3)){
+      next({name: 'login'}) 
+    }else{
+      next({name: 'loginUser'})
+    }
+  } else {
+    next() 
+  }
+})
+
 new Vue({
   el: '#app',
   router,
