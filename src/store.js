@@ -74,5 +74,6 @@ export default new Vuex.Store({
         getCurrentProduct: state => state.currentProduct,
         getShowModal: state => state.showModal,
         getPopupCart: state => state.showPopupCart,
+        getUserId: state => state.user.id
     }
 })

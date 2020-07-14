@@ -11,8 +11,7 @@ module.exports = (sequelize, type) => {
           allowNull: false
       },
       bankNumber:{
-          type: type.STRING,
-          allowNull: false
+          type: type.STRING
       },
       totalPrice:{
           type: type.DOUBLE,
