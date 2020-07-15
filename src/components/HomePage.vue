@@ -7,7 +7,9 @@
     <section class="card-columns content mt-5">
       <div class="card karta" v-for="product in filteredProducts" :key="product.id">
         <div class="image">
-          <img class="card-img-top img-fluid" :src="getPath(product.image)" alt />
+          <div class="image1">
+            <img class="card-img-top img-fluid" :src="getPath(product.image)" alt />
+          </div>
         </div>
         <div class="card-body">
           <h4 class="card-title">{{product.name}}</h4>
@@ -64,12 +66,16 @@ export default {
 .karta {
   max-width: 250px;
 }
-.image {
+/* .image {
   height: 200px;
   display: table-cell;
   vertical-align: middle;
 }
-.filter{
+.image1{
+  display: block;
+  text-align: center;
+} */
+.filter {
   display: flex;
   width: 100%;
 }

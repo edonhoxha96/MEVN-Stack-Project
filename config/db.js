@@ -14,7 +14,7 @@ const UserModel = require('../models/User')
 
 
 
-const sequelize = new Sequelize('emall', 'sa', '1234', {
+const sequelize = new Sequelize('emall6', 'sa', '159862487', {
     host: 'localhost',
     dialect: 'mssql',
     pool: {
