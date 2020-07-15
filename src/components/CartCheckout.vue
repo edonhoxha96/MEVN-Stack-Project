@@ -3,11 +3,11 @@
   <div class="checkout-box">
     <ul class="checkout-list">
       <transition-group name="fade">
-      <li v-for="product in getProductsInCart" :key="product.id" class="checkout-product">
+      <li v-for="(product, index) in getProductsInCart" :key="index" class="checkout-product">
         <img :src="product.image" alt="" class="product-image">
         <h3 class="product-name">{{ product.name }}</h3>
         <span class="product-price">R$ {{ product.price }},00 </span>
-        <button class="product-remove" @click="remove(index)">X</button>
+        <button class="product-remove" @click="remove(index, product.id)">X</button>
       </li>
       </transition-group>
     </ul>
@@ -28,7 +28,7 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex';
+import { mapState, mapGetters, mapActions } from 'vuex';
 import btn from '@/components/Btn.vue'
 
 export default {
@@ -39,10 +39,14 @@ export default {
     ...mapGetters([
       'getProductsInCart',
     ]),
+    ...mapState([
+      'products'
+    ])
   },
   methods: {
     ...mapActions([
       'removeProduct',
+      'addStock'
     ]),
     hasProduct() {
       return this.getProductsInCart.length > 0;
@@ -51,8 +55,13 @@ export default {
       return this.getProductsInCart.reduce((current, next) =>
         current + next.price, 0);
     },
-    remove(index) {
+    remove(index, id) {
       this.removeProduct(index);
+      var objIndex = this.products.findIndex(obj => obj.id == id)
+      this.products[objIndex].stock += 1
+    },
+    addToStock(id){
+      this.addStock(id)
     },
     makePayment(){
       this.$router.push('payment')

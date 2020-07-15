@@ -34,6 +34,6 @@ export const routes = [
     { path: '/products', name:'products', component: Products},
     { path: '/cart-checkout', name:'cart-checkout', component: CartCheckout},
     { path: '/product-details', name:'product-details', component: ProductDetail},
-    { path: '/payment', name:'payment', component: Payment},
+    { path: '/payment', name:'payment', component: Payment, meta: {requiresAuth: true, role: 3}},
 
 ]

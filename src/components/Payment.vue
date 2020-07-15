@@ -25,7 +25,7 @@
           </select>
       </div> -->
       <br/>
-      <input type="submit" id="submit" class="btn btn-secondary btn-block" value="Create">
+      <input type="submit" id="submit" class="btn btn-secondary btn-block" value="Pay">
     </form>
     <br/>  
   </div>
@@ -33,7 +33,7 @@
 
 <script>
 import axios from 'axios'
-import {mapGetters} from 'vuex'
+import {mapGetters, mapState, mapActions} from 'vuex'
 
 export default {
   name: 'Payment',
@@ -50,8 +50,14 @@ export default {
       'getProductsInCart',
       'getUserId'
     ]),
+    ...mapState([
+      'products'
+    ])
   },
   methods:{
+    ...mapActions([
+      'removeProduct'
+    ]),
     async onSubmit (evt) {
       evt.preventDefault()
       this.order.totalPrice = this.totalPrice()
@@ -61,12 +67,19 @@ export default {
       .then(response => {
           this.payment.OrderId= response.data.id
       })
-      
       var productsordered = this.getProductsInCart
-      productsordered.forEach(element => {
+      productsordered.forEach(async element => {
           var ord = {OrderId: this.payment.OrderId, ProductId: element.id}
-          axios.post('http://localhost:3000/emall/api/orderproducts', ord)
+          await axios.post('http://localhost:3000/emall/api/orderproducts', ord)
           .then(response => {console.log(response)})
+
+          var product = this.products.find(p => p.id == element.id)
+          await axios.put(`http://localhost:3000/emall/api/products/update/${product.id}`, product)
+          .then(response => {
+            console.log(response)
+            })
+          var objIndex = this.getProductsInCart.findIndex(obj => obj.id = element.id)
+          await this.remove(objIndex)
       });
       
       this.payment.totalPrice = this.totalPrice()
@@ -81,6 +94,9 @@ export default {
     totalPrice() {
       return this.getProductsInCart.reduce((current, next) =>
         current + next.price, 0);
+    },
+    async remove(id) {
+      await this.removeProduct(id);
     },
   }
 }

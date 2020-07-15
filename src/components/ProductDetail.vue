@@ -1,27 +1,32 @@
 <template>
   <div class="product-box">
     <div class="product-image">
-      <img :src="getPath(currentProduct.image)" alt="">
-      <stars :rate="rated(currentProduct.rating)" :totalReviews="currentProduct.rating"/>
+      <img :src="getPath(product.image)" alt="">
+      <stars :rate="rated(product.rating)" :totalReviews="product.rating"/>
     </div>
     <div class="product-info">
-      <h2 class="product-title">{{ currentProduct.name }}</h2>
-      <span class="product-price">R$ {{ currentProduct.price }}, 00</span>
+      <h2 class="product-title">{{ product.name }}</h2>
+      <span class="product-price">R$ {{ product.price }}, 00</span>
+      <div v-if="product.stock > 0">
       <btn btnColor="btn btn-large btn-sucess" :cartIcon="true"
-      @click.native="addProductToCart(currentProduct)">
+      @click.native="addProductToCart(product)">
         Buy Now
       </btn>
+      </div>
+      <div v-else>
+          <btn btnColor="btn btn-large btn-secondary">Out of stock</btn>
+      </div>
       <btn btnColor="btn btn-large btn-info"
           @click.native="openModal()">
         More Info
       </btn>
     </div>
-    <modal>{{ currentProduct.details }}</modal>
+    <modal>{{ product.description }}</modal>
   </div>
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex';
+import { mapState, mapActions } from 'vuex';
 import btn from './Btn';
 import stars from './Stars';
 import modal from './Modal';
@@ -31,10 +36,18 @@ export default {
     stars,
     modal,
   },
+  data(){
+    return{
+      product: {}
+    }
+  },
   computed: {
-    ...mapGetters({
-      currentProduct: 'getCurrentProduct',
-    }),
+    ...mapState([
+      'products'
+    ]),
+  },
+  created(){
+    this.product = this.products.find(p => p.id == this.$route.params.id)
   },
   methods: {
     ...mapActions([
