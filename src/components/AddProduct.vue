@@ -86,8 +86,9 @@ export default {
       axios.post(`http://localhost:3000/emall/api/products`, this.product)
       .then(function (response) {
         console.log(response);
-        location.reload()
         })
+        this.$store.dispatch('loadProducts')
+        location.reload()  
     }
   }
 }

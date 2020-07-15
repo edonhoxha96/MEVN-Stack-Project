@@ -88,7 +88,8 @@ export default {
       axios.put(`http://localhost:3000/emall/api/products/update/${this.$route.params.id}`, this.product)
       .then(function (response) {
         console.log(response);
-        })
+      })
+      this.$store.dispatch('loadProducts')  
       this.$router.push('storeKeeperPage')  
     }
   }
