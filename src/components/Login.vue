@@ -57,8 +57,7 @@ export default {
 }
 </script>
 <style scoped>
-    body {
-    }
+    
     input {
     width: 100px;
     padding: 20px;
