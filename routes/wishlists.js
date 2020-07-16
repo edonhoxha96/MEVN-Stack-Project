@@ -12,9 +12,10 @@ router.get('/api/wishlists', (req, res) => {
 })
 
 router.get('/api/wishlists/:id', (req, res) => {
-    Wishlist.findOne({
-        where:{ id: req.params.id, },
+    Wishlist.findAll({
+        where:{ CostumerId: req.params.id, },
     }).then(wishlists => res.json(wishlists))
+    .catch(err => console.log(err))
 })
 
 router.post('/api/wishlists', (req, res) => {

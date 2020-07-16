@@ -12,8 +12,8 @@ router.get('/api/reviews', (req, res) => {
 })
 
 router.get('/api/reviews/:id', (req, res) => {
-    Review.findOne({
-        where:{ id: req.params.id, },
+    Review.findAll({
+        where:{ ProductId: req.params.id, },
     }).then(reviews => res.json(reviews))
 })
 

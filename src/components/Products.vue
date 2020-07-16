@@ -18,15 +18,15 @@
     <maskBg v-if="getPopupCart" @click.native="showPopupCart()"/>
     </div>    
     <ul class="listOfProducts">
-        <li v-for="product in products" :key="product.id" class="product">
+        <li v-for="(product, index) in products" :key="index" class="product">
         <img :src="getPath(product.image)" alt="">
-        <router-link :to="{name: 'product-details', params:{id: product.id}}">
-            <h2 class="product-name" >
+        <router-link to="/product-details">
+            <h2 class="product-name" @click="addCurrentProduct(product)">
             {{ product.name }}
             </h2>
         </router-link>
         <div class="product-price">
-            <span>R$ {{ product.price }}, 00</span>
+            <span>€ {{ product.price }}</span>
             <span>Stock: {{product.stock}} </span>
         </div>
         <div v-if="product.stock > 0">
@@ -79,7 +79,7 @@ export default {
       'removeStock'
     ]),
     addProductToCart(product) {
-      product.stock -= 1
+      this.removeFromStock(product.id)
       this.addProduct(product);
     },
     removeFromStock(id){
@@ -97,7 +97,6 @@ export default {
     showPopupCart() {
       this.showOrHiddenPopupCart();
     },
-    
     addCurrentProduct(product) {
       this.currentProduct(product);
     },
@@ -107,7 +106,8 @@ export default {
 
 <style scoped>
     img{
-        width:300px
+        width:300px;
+        height:200px;
     }
   .listOfProducts {
     width: 100%;

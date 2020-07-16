@@ -23,11 +23,11 @@ export default new Vuex.Store({
             state.products = products
         },
         ADD_STOCK(state, id){
-            var objIndex = state.products.findIndex(obj => obj.id = id)
+            var objIndex = state.products.findIndex(obj => obj.id == id)
              state.products[objIndex].stock += 1
         },
         REMOVE_STOCK(state, id){
-            var objIndex = state.products.findIndex(obj => obj.id = id)
+            var objIndex = state.products.findIndex(obj => obj.id == id)
             state.products[objIndex].stock -= 1
         },
         LOGOUT_USER(state){
@@ -106,5 +106,7 @@ export default new Vuex.Store({
         getPopupCart: state => state.showPopupCart,
         getUserId: state => state.user.id,
     },
-    plugins: [createPersistedState()]
+    plugins: [createPersistedState({
+        paths: ['user','cartProducts','products', 'currentProduct']
+    })]
 })
