@@ -79,4 +79,7 @@ export default {
   display: flex;
   width: 100%;
 }
+.image img {
+  max-width: 200px;
+}
 </style>

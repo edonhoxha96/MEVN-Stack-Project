@@ -28,8 +28,8 @@
         </div>
         <div class="card-body">
           <h4 class="card-title">{{product.name}}</h4>
-          <p class="card-text">{{product.price}}</p>
-          <div>{{product.rating}}</div>
+          <p class="card-text">Product price: {{product.price}}</p>
+          <div>Product rating: {{product.rating}}</div>
           <router-link :to="{name: 'editproduct', params: { id: product.id }}">Edit</router-link>
         </div>
       </div>
@@ -105,7 +105,7 @@ export default {
 }
 .logo img {
   border-radius: 50%;
-  box-shadow: 0px 1px 0px 3px;
+  box-shadow: 0px 0px 20px 0px;
   max-width: 250px;
   height: 250px;
 }
@@ -130,15 +130,23 @@ a {
 .store {
   box-shadow: 0px 0px 20px -9px;
   border-radius: 3px;
+  padding: 1px;
+}
+.store h2 {
+  padding: 30px;
 }
 .productlist {
   margin: 30px;
   box-shadow: 0px 0px 20px -9px;
 }
-.productimg{
+.productimg {
   max-width: 200px;
 }
-.productlist:hover{
+.storename {
+  margin: 40px 0 40px 0;
+  padding-top: 30px;
+}
+.productlist:hover {
   box-shadow: 0px 0px 20px 3px;
   cursor: pointer;
 }
