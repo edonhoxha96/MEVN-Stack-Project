@@ -22,6 +22,9 @@
         <input class="form-control" type="number" id="rating" placeholder="rating" min="0" max="10" v-model="product.rating"/>
       </div>
       <div class="form-group">
+        <input class="form-control" type="number" id="description" placeholder="description" v-model="product.description"/>
+      </div>
+      <div class="form-group">
         <input class="form-control" type="number" id="stock" placeholder="stock" v-model="product.stock"/>
       </div>
       <div class="form-group">

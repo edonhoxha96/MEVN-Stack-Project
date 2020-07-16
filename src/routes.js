@@ -24,7 +24,7 @@ export const routes = [
     { path: '/addCategory', component: AddCategory, meta: {requiresAuth: true, role: 1}},
     { path: '/addProduct', component: AddProduct, meta: {requiresAuth: true, role: 2}},
     { path: '/addStore', component: AddStore, meta: {requiresAuth: true, role: 1}},
-    { path: '/addUser', component: AddUser, meta: {requiresAuth: true, role: 1}},
+    { path: '/addUser', component: AddUser},
     { path: '/adminPage', name:'adminPage' ,component: AdminPage, meta: {requiresAuth: true, role: 1}},
     { path: '/userLogin',name: 'loginUser', component: UserLogin},
     { path: '/storeKeeperPage',name: 'skPage' , component: StoreKeeperPage, meta: {requiresAuth: true, role: 2}},
