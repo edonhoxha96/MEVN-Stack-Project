@@ -26,8 +26,14 @@
             </h2>
         </router-link>
         <div class="product-price">
+          <div v-if="product.oldPrice == null">
             <span>€ {{ product.price }}</span>
-            <span>Stock: {{product.stock}} </span>
+          </div>
+          <div v-else>
+            <span style="color:green;">€ {{ product.price }}</span>
+            <span style="color:red; text-decoration: line-through;">€ {{ product.oldPrice }}</span>
+          </div>
+              <span>Stock: {{product.stock}} </span>
         </div>
         <div v-if="product.stock > 0">
         <btn btnColor="btn btn-large btn-sucess"

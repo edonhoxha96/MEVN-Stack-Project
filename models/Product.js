@@ -24,6 +24,9 @@ module.exports = (sequelize, type) => {
           type: type.DOUBLE,
           allowNull: false
       },
+      oldPrice:{
+        type: type.DOUBLE,
+      },
       color:{
           type: type.STRING
       },

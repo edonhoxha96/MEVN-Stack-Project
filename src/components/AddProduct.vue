@@ -7,10 +7,13 @@
         <input class="form-control" type="text" id="name" placeholder="Name" v-model="product.name"/>
       </div>
       <div>
-        <p>Add product image: <file-select v-model="product.image"></file-select></p>
+        <p>Add product image: <file-select v-model="product.image" required></file-select></p>
       </div>
       <div class="form-group">
         <input type="number" placeholder="price" step="0.01" min="0" v-model="product.price">
+      </div>
+      <div class="form-group">
+        <input type="number" placeholder="old price" step="0.01" min="0" v-model="product.oldPrice">
       </div>
       <div class="form-group">
         <input class="form-control" type="text" id="color" placeholder="color" v-model="product.color"/>
