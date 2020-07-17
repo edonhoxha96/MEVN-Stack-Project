@@ -6,13 +6,8 @@
       <div class="form-group">
         <input class="form-control" type="text" id="name" placeholder="Name" v-model="product.name"/>
       </div>
-<<<<<<< HEAD
-      <div class="form-group">
-        <p>Add product image: <file-select v-model="product.image"></file-select></p>
-=======
       <div>
         <p>Add product image: <file-select v-model="product.image" required></file-select></p>
->>>>>>> 9c465d25d2375e50a7365298e7c985b5799a441b
       </div>
       <div class="form-group">
         <input type="number" background:blue, placeholder="price" step="0.01" min="0" v-model="product.price">
@@ -131,9 +126,7 @@ export default {
     background-color:#2EA169;
     font-weight: bold;
     }
-    .container{
-        align-self: ;
-    }
+ 
     h1{
         margin-left:150px
     }

@@ -57,6 +57,10 @@ export default {
     div {
     color: inherit;
     }
+
+    select{
+          background-color: #d1caca;
+    }
     input {
     width: 400px;
     padding: 30px;

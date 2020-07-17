@@ -12,18 +12,18 @@ import Register from './components/Register';
 import Login from './components/Login';
 import Order from './components/Order';
 import Products from './components/Products';
-import CartCheckout from './components/CartCheckout'
-import ProductDetail from './components/ProductDetail'
-import Payment from './components/Payment'
-import Stores from './components/Stores'
-import Wishlist from './components/Wishlist'
-import Masterlogin from './components/Masterlogin'
+import CartCheckout from './components/CartCheckout';
+import ProductDetail from './components/ProductDetail';
+import Payment from './components/Payment';
+import Stores from './components/Stores';
+import Wishlist from './components/Wishlist';
+import Masterlogin from './components/Masterlogin';
 
 export const routes = [
     { path:'/', name:'home', component: HomePage},
     { path: '/about', component: About},
     { path: '/addCategory', component: AddCategory, meta: {requiresAuth: true, role: 1}},
-    { path: '/addProduct', component: AddProduct, meta: {requiresAuth: true, role: 2}},
+    { path: '/AddProduct', component: AddProduct, meta: {requiresAuth: true, role: 2}},
     { path: '/addStore', component: AddStore, meta: {requiresAuth: true, role: 1}},
     { path: '/addUser', component: AddUser, meta: {requiresAuth: true, role: 1}},
     { path: '/adminPage', name:'adminPage' ,component: AdminPage, meta: {requiresAuth: true, role: 1}},
