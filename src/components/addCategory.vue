@@ -74,6 +74,7 @@ export default {
     }
     .container{
         align-self: center;
+        /* padding-bottom: -50px; */
     }
     h1{
         margin-left:150px
