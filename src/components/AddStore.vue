@@ -1,38 +1,18 @@
 <template>
-  <div>
-    <div class="container">
-      <h1>Add Store</h1>
-      <hr />
-      <form @submit="onSubmit" class="addstore">
-        <div class="form-group">
-          <input
-            class="form-control"
-            type="text"
-            id="title"
-            placeholder="Name"
-            v-model="store.name"
-          />
-        </div>
-        <div>
-          Select photo form your device:
-          <file-select v-model="store.logo" class="select-button"></file-select>
-        </div>
-        <br />
-
-        <input
-          type="submit"
-          id="submit"
-          class="btn btn-secondary btn-block"
-          value="Create"
-        />
-      </form>
-      <h4 class="backbutton">
-        <router-link class="nav-link" to="/adminPage">
-          <a>Back</a>
-        </router-link>
-      </h4>
-      <br />
-    </div>
+  <div class="container">
+    <h1>Add Store</h1>
+    <hr />
+    <form @submit="onSubmit">
+      <div class="form-group">
+        <input class="form-control" type="text" id="title" placeholder="Name" v-model="store.name"/>
+      </div>
+      <div>
+        <p>My File Selector: <file-select v-model="store.logo"></file-select></p>
+      </div>
+      <br/>
+      <input type="submit" id="submit" class="btn btn-secondary btn-block" value="Create">
+    </form>
+    <br/>  
   </div>
 </template>
 

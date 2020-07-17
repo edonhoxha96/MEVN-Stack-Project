@@ -42,7 +42,7 @@
       </div>
       <br/>
       <div>
-      <input type="submit" id="submit" class="btn btn-secondary btn-block" value="Create">
+      <input type="submit" id="submit" class="btn btn-secondary btn-block" value="Update">
       </div>
     </form>
     <br/>  
