@@ -26,13 +26,18 @@ export default {
   padding: 1rem;
 
   color: white;
-  background-color: #2EA169;
+  background-color: #009AD5;
+
 
   border-radius: .3rem;
 
   text-align: center;
   font-weight: bold;
 }
+.select-button:hover{
+  background-color:#55BCE3;
+}
+
 
 /* Don't forget to hide the original file input! */
 .file-select > input[type="file"] {

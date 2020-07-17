@@ -5,30 +5,26 @@
     <router-view></router-view>
     <webapp-footer />
   </div>
-  
 </template>
-<script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"> </script>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js">
+</script>
 <script>
 // import HomePage from './components/HomePage.vue'
-import footer from './components/Footer.vue'
-import header from './components/Header.vue'
+import footer from "./components/Footer.vue";
+import header from "./components/Header.vue";
 // import navbar from './components/Nav-bar.vue'
-
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    'webapp-footer': footer,
-    'webapp-header': header,
+    "webapp-footer": footer,
+    "webapp-header": header
     // 'webapp-navbar': navbar,
-  //   HomePage
+    //   HomePage
   },
-data() {
-  return {
-
+  data() {
+    return {};
   }
-}
-}
-
+};
 </script>
 
 <style>

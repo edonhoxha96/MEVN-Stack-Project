@@ -15,8 +15,8 @@ import Products from './components/Products';
 import CartCheckout from './components/CartCheckout'
 import ProductDetail from './components/ProductDetail'
 import Payment from './components/Payment'
+import Stores from './components/Stores'
 import Wishlist from './components/Wishlist'
-
 
 export const routes = [
     { path:'/', name:'home', component: HomePage},
@@ -24,7 +24,7 @@ export const routes = [
     { path: '/addCategory', component: AddCategory, meta: {requiresAuth: true, role: 1}},
     { path: '/addProduct', component: AddProduct, meta: {requiresAuth: true, role: 2}},
     { path: '/addStore', component: AddStore, meta: {requiresAuth: true, role: 1}},
-    { path: '/addUser', component: AddUser},
+    { path: '/addUser', component: AddUser, meta: {requiresAuth: true, role: 1}},
     { path: '/adminPage', name:'adminPage' ,component: AdminPage, meta: {requiresAuth: true, role: 1}},
     { path: '/userLogin',name: 'loginUser', component: UserLogin},
     { path: '/storeKeeperPage',name: 'skPage' , component: StoreKeeperPage, meta: {requiresAuth: true, role: 2}},
@@ -36,6 +36,6 @@ export const routes = [
     { path: '/cart-checkout', name:'cart-checkout', component: CartCheckout},
     { path: '/product-details', name:'product-details', component: ProductDetail},
     { path: '/payment', name:'payment', component: Payment, meta: {requiresAuth: true, role: 3}},
+    { path: '/stores', component: Stores},
     { path: '/wishlist', name:'wishlist', component: Wishlist, meta: {requiresAuth: true, role: 3}},
-
 ]

@@ -12,7 +12,7 @@
             <div><input type="password" placeholder="password" v-model="currentUser.password" required></div>
             <button type="submit">Login</button>
             <h4>Don't have an account?</h4>
-            <h4>Register here:
+            <h4>Register here: 
                 <router-link class="nav-link" to="/register">
                   <a>Click</a>
                 </router-link>
