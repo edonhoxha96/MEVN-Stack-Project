@@ -65,20 +65,22 @@
           </template>
         </v-navigation-drawer>
         <!-- <div>Here go all stores, admin can view stores and storekeeper</div> -->
-        <div class="storesList">
+        <!-- <div class="storesList">
           <div class="loop" v-for="store in stores" :key="store.StoreId">
             <div class="store">
               <div class="storeName">{{store.name}}</div>
             </div>
           </div>
-        </div>
+        </div>-->
       </v-card>
     </div>
     <div class="store1">
       <div class="wrapper">
         <nav class="main-nav">
           <ul>
-            <li v-for="store in stores" :key="store.StoreId"><a href="#">{{store.name}}</a></li>
+            <li v-for="store in stores" :key="store.StoreId">
+              <a href="#">{{store.name}}</a>
+            </li>
           </ul>
         </nav>
       </div>
@@ -96,10 +98,23 @@ export default {
       stores: [],
       // From vuetify admin page
       drawer: true,
-      items: [{title: "View Stores", icon: "mdi-storefront-outline",route: "/stores"},
-              {title: "Add new store", icon: "mdi-folder-plus-outline",route: "/addStore"},
-              {title: "Add store keeper", icon: "mdi-account-plus-outline", route: "/addUser"}
-            ],
+      items: [
+        {
+          title: "View Stores",
+          icon: "mdi-storefront-outline",
+          route: "/stores"
+        },
+        {
+          title: "Add new store",
+          icon: "mdi-folder-plus-outline",
+          route: "/addStore"
+        },
+        {
+          title: "Add store keeper",
+          icon: "mdi-account-plus-outline",
+          route: "/addUser"
+        }
+      ],
       color: "primary",
       colors: ["primary", "blue", "success", "red", "teal"],
       right: false,
@@ -137,17 +152,17 @@ export default {
 </script>
 
 <style scoped>
-.main{
+.main {
   display: flex;
 }
-.sidepanel{
+.sidepanel {
   width: 329px;
 }
-.store1{
+.store1 {
   width: 100%;
   margin-left: 20px;
 }
-.wrapper{
+.wrapper {
   display: grid;
   grid-gap: 20px;
 }

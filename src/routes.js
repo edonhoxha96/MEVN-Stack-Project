@@ -16,6 +16,7 @@ import CartCheckout from './components/CartCheckout'
 import ProductDetail from './components/ProductDetail'
 import Payment from './components/Payment'
 import Stores from './components/Stores'
+import Wishlist from './components/Wishlist'
 
 export const routes = [
     { path:'/', name:'home', component: HomePage},
@@ -36,4 +37,5 @@ export const routes = [
     { path: '/product-details', name:'product-details', component: ProductDetail},
     { path: '/payment', name:'payment', component: Payment, meta: {requiresAuth: true, role: 3}},
     { path: '/stores', component: Stores},
+    { path: '/wishlist', name:'wishlist', component: Wishlist, meta: {requiresAuth: true, role: 3}},
 ]

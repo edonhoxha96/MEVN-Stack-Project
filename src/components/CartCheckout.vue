@@ -57,8 +57,9 @@ export default {
     },
     remove(index, id) {
       this.removeProduct(index);
-      var objIndex = this.products.findIndex(obj => obj.id == id)
-      this.products[objIndex].stock += 1
+      this.addToStock(id)
+      // var objIndex = this.products.findIndex(obj => obj.id == id)
+      // this.products[objIndex].stock += 1
     },
     addToStock(id){
       this.addStock(id)
