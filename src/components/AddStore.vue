@@ -6,8 +6,8 @@
       <div class="form-group">
         <input class="form-control" type="text" id="title" placeholder="Name" v-model="store.name"/>
       </div>
-      <div>
-        <p>My File Selector: <file-select v-model="store.logo"></file-select></p>
+      <div class="selectB">
+        <p>My File Selector: <file-select v-model="store.logo" class="select-button"></file-select></p>
       </div>
       <br/>
       <input type="submit" id="submit" class="btn btn-secondary btn-block" value="Create">
@@ -73,7 +73,9 @@ input {
   float: left;
   margin: 0px 10px 0px 0px; 
 }
-
+.selectB {
+  margin: 0px 1500px 10px 0px;
+}
 .container {
   align-self: center;
 

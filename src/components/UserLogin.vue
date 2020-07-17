@@ -12,7 +12,7 @@
             <button type="submit">Login</button>
              <h4>Don't have an account?</h4>
             <h4>Register here:
-                <router-link class="nav-link" to="/register">
+                <router-link class="nav-link" to="/addUser">
                   <a>Click</a>
                 </router-link>
             </h4>

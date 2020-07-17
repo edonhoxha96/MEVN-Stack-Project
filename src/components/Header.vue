@@ -18,6 +18,11 @@
               <a>Register</a>
             </router-link>
           </li>
+           <li class="nav-item">
+            <router-link class="nav-link" to="/Masterlogin">
+              <a>Admin</a>
+            </router-link>
+          </li>
         </ul>
       </div>
     </nav>

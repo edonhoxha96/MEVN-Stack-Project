@@ -122,6 +122,8 @@ export default {
   margin: 50px 100px 10px 50px;
   align-content: center;
   margin-top: 550px;
+  max-width: fit-content;
+  min-width: 650px;
   margin-bottom: -400px;
   background: #343a40;
   color: #fff;
@@ -149,6 +151,7 @@ input {
   padding: 20px;
   margin: 10px;
   font-size: 21px;
+  background-color: #343a40;
 }
 .onsubmit {
     padding-left: 18%;
@@ -157,7 +160,7 @@ input {
   width: 200px;
   height: 75px;
   font-size: 100%;
-  /* margin-left: 30%; */
+  margin-left: -44%;
   color: white;
   background-color: #009ad5;
   font-weight: bold;
@@ -169,7 +172,8 @@ input {
     padding-left: 170px;
 }
 .loginbutton h4 {
-    padding-right: 250px;
+    padding-right: 85px;
+    margin: 1px -5px 0px 0px;
 }
 #submit:hover {
   background-color: #55bce3;
