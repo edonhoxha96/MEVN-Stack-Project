@@ -1,5 +1,9 @@
 <template>
 <div>
+    <div class="filter">
+      <input class="search" type="text" v-model="search" placeholder="Search Product" />
+      <Categories class="categories" />
+    </div>
     <div>
     <btn btnColor="btn btn-small btn-info btn-popup"
          :cartIcon="true"
@@ -18,7 +22,7 @@
     <maskBg v-if="getPopupCart" @click.native="showPopupCart()"/>
     </div>    
     <ul class="listOfProducts">
-        <li v-for="(product, index) in products" :key="index" class="product">
+        <li v-for="(product, index) in filteredProducts" :key="index" class="product">
         <img :src="getPath(product.image)" alt="">
         <router-link to="/product-details">
             <h2 class="product-name" @click="addCurrentProduct(product)">
@@ -55,12 +59,19 @@ import { mapGetters, mapActions, mapState } from 'vuex';
 import btn from '@/components/Btn';
 import popupcart from '@/components/Popupcart';
 import maskBg from '@/components/Mask';
+import Categories from '@/components/Categories'
 
 export default {
   components: {
     btn,
     popupcart,
-    maskBg
+    maskBg,
+    Categories
+  },
+  data(){
+    return{
+      search:''
+    }
   },
   mounted(){
       console.log(this.products)
@@ -75,7 +86,12 @@ export default {
     ]),
     ...mapState([
       'products'
-    ])
+    ]),
+    filteredProducts: function() {
+      return this.products.filter(product => {
+        return product.name.toLowerCase().match(this.search.toLowerCase());
+      });
+    }
   },
   methods: {
     ...mapActions([
@@ -170,4 +186,12 @@ export default {
     align-items: center;
     justify-content: center;
   }
+  .filter {
+  margin-left:30px;
+  display: flex;
+  width: 100%;
+}
+.search{
+  width:25%;
+}
 </style>

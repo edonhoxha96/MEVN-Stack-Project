@@ -12,6 +12,18 @@ router.get('/api/categories', (req, res) => {
     Category.findAll().then(categories => res.json(categories))
 })
 
+router.get('/api/parentcategories', (req, res) => {
+    Category.findAll({
+        where:{parentId: null}
+    }).then(categories => res.json(categories))
+})
+
+router.get('/api/subcategories/:id', (req, res) => {
+    Category.findAll({
+        where:{parentId: req.params.id}
+    }).then(categories => res.json(categories))
+})
+
 router.get('/api/categories/:id', (req, res) => {
     Category.findOne({
         where:{ id: req.params.id, },
