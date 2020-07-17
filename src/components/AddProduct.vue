@@ -6,11 +6,11 @@
       <div class="form-group">
         <input class="form-control" type="text" id="name" placeholder="Name" v-model="product.name"/>
       </div>
-      <div>
+      <div class="form-group">
         <p>Add product image: <file-select v-model="product.image"></file-select></p>
       </div>
       <div class="form-group">
-        <input type="number" placeholder="price" step="0.01" min="0" v-model="product.price">
+        <input type="number" background:blue, placeholder="price" step="0.01" min="0" v-model="product.price">
       </div>
       <div class="form-group">
         <input class="form-control" type="text" id="color" placeholder="color" v-model="product.color"/>
@@ -98,13 +98,22 @@ export default {
 <style scoped>
     div {
     color: inherit;
+    
+    padding-right: 70px;
+
     }
     input {
     width: 400px;
     padding: 30px;
     margin: 20px;
     font-size: 21px;
+    background-color: #dfdfdf;
     }
+  
+.form-group {
+    margin-bottom: 1rem;
+    margin-right: 70%;
+}
     #submit {
     width: 400px;
     height: 75px;
@@ -115,7 +124,7 @@ export default {
     font-weight: bold;
     }
     .container{
-        align-self: center;
+        align-self: ;
     }
     h1{
         margin-left:150px
