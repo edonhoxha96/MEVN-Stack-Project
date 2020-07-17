@@ -14,7 +14,7 @@ const UserModel = require('../models/User')
 
 
 
-const sequelize = new Sequelize('emall6', 'sa', '159862487', {
+const sequelize = new Sequelize('emall8', 'sa', 'databaza', {
     host: 'localhost',
     dialect: 'mssql',
     pool: {
@@ -50,10 +50,7 @@ const User = UserModel(sequelize, Sequelize)
 
 Product.belongsTo(Category)
 Product.belongsTo(Store)
-Costumer.belongsToMany(Product,{through: 'Wishlist'})
 Order.belongsTo(Costumer)
-Costumer.belongsToMany(Product,{through:'Review'})
-Product.belongsToMany(Costumer,{through:'Review'})
 Payment.belongsTo(Order)
 User.belongsTo(Role)
 Costumer.belongsTo(Role)

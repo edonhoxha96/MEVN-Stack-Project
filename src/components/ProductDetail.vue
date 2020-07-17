@@ -80,9 +80,10 @@ export default {
     ...mapActions([
       'addProduct',
       'showOrHiddenModal',
+      'removeStock'
     ]),
     addProductToCart(product) {
-      this.removeFromStock(product.id)
+      this.removeStock(product.id)
       this.addProduct(product);
       this.$router.push('cart-checkout')
     },

@@ -4,7 +4,7 @@
     <ul class="checkout-list">
       <transition-group name="fade">
       <li v-for="(product, index) in getProductsInCart" :key="index" class="checkout-product">
-        <img :src="product.image" alt="" class="product-image">
+        <img :src="getPath(product.image)" alt="" class="product-image">
         <h3 class="product-name">{{ product.name }}</h3>
         <span class="product-price">R$ {{ product.price }},00 </span>
         <button class="product-remove" @click="remove(index, product.id)">X</button>
@@ -66,7 +66,13 @@ export default {
     },
     makePayment(){
       this.$router.push('payment')
-    }
+    },
+    getPath(picturepath){
+        if(picturepath == null) {
+          return
+        }
+        return require(`../assets/${picturepath}`)
+    },
   },
 };
 </script>
