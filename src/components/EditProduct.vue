@@ -6,7 +6,7 @@
       <div class="form-group">
         <input class="form-control" type="text" id="name" :placeholder="product.name" v-model="product.name"/>
       </div>
-      <div>
+      <div class="fileselector">
         <p>My File Selector: <file-select :placeholder="product.logo" v-model="product.image"></file-select></p>
       </div>
       <div class="form-group">
@@ -98,7 +98,7 @@ export default {
 </script>
 
 <style scoped>
-    div {
+    /* div {
     color: inherit;
     }
     input {
@@ -119,6 +119,44 @@ export default {
     .container{
         align-self: center;
     }
+    h1{
+        margin-left:150px
+    } */
+     div {
+    color: inherit;
+    
+    padding-right: 70px;
+
+    }
+    input {
+    width: 400px;
+    padding: 30px;
+    margin: 20px;
+    font-size: 21px;
+    background-color: #dfdfdf;
+    }
+  
+.form-group {
+    margin-bottom: 1rem;
+    margin-right: 70%;
+}
+button, input, select, textarea {
+    background-color: transparent;
+    border-style: solid;
+}
+    #submit {
+    width: 400px;
+    height: 75px;
+    font-size: 100%;
+    margin-left: 20px;
+    color:white;
+    background-color:#2EA169;
+    font-weight: bold;
+    }
+  .fileselector
+  {
+    margin: 0px 1250px 0px 0px;
+  }
     h1{
         margin-left:150px
     }

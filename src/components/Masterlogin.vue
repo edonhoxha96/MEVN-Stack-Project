@@ -2,9 +2,8 @@
     <div class="container">
         <div class="buton1">
          
-                <router-link class="nav-link" to="/addUser">
+                <router-link class="nav-link" to="/AddUser">
                   <button class="button1">Register here</button>
-
                 </router-link>
     </div>
     <div class="buton2">
