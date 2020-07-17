@@ -21,28 +21,31 @@
         <li v-for="(product, index) in products" :key="index" class="product">
         <img :src="getPath(product.image)" alt="">
         <router-link to="/product-details">
-            <h2 class="product-name" @click="addCurrentProduct(product)" >
+            <h2 class="product-name" @click="addCurrentProduct(product)">
             {{ product.name }}
             </h2>
         </router-link>
         <div class="product-price">
-            <span>R$ {{ product.price }}, 00</span>
-            <span>10 x {{ Math.round(product.price / 10) }}, 00 </span>
+            <span>€ {{ product.price }}</span>
+            <span>Stock: {{product.stock}} </span>
         </div>
-
+        <div v-if="product.stock > 0">
         <btn btnColor="btn btn-large btn-sucess"
             :cartIcon="true"
             @click.native="addProductToCart(product)">
             Add to cart
         </btn>
+        </div>
+        <div v-else>
+          <btn btnColor="btn btn-large btn-secondary">Out of stock</btn>
+        </div>
         </li>
     </ul>
 </div>    
 </template>
 
 <script>
-import axios from 'axios'
-import { mapGetters, mapActions } from 'vuex';
+import { mapGetters, mapActions, mapState } from 'vuex';
 import btn from '@/components/Btn';
 import popupcart from '@/components/Popupcart';
 import maskBg from '@/components/Mask';
@@ -53,25 +56,34 @@ export default {
     popupcart,
     maskBg
   },
-  data(){
-      return{
-          products:[]
+  mounted(){
+      console.log(this.products)
+      if((this.products.length == 0)){
+        this.$store.dispatch('loadProducts')
       }
   },
-  created(){
-    axios.get(`http://localhost:3000/emall/api/products`)
-    .then(response => {
-      this.products = response.data;
-    });
+  computed:{
+    ...mapGetters([
+      'getProductsInCart',
+      'getPopupCart',
+    ]),
+    ...mapState([
+      'products'
+    ])
   },
   methods: {
     ...mapActions([
       'addProduct',
       'showOrHiddenPopupCart',
       'currentProduct',
+      'removeStock'
     ]),
     addProductToCart(product) {
+      this.removeFromStock(product.id)
       this.addProduct(product);
+    },
+    removeFromStock(id){
+      this.removeStock(id)
     },
     getPath(picturepath){
         if(picturepath == null) {
@@ -85,23 +97,17 @@ export default {
     showPopupCart() {
       this.showOrHiddenPopupCart();
     },
-    
     addCurrentProduct(product) {
       this.currentProduct(product);
     },
-  },
-  computed: {
-    ...mapGetters([
-      'getProductsInCart',
-      'getPopupCart',
-    ]),
-  },
+  }
 };
 </script>
 
 <style scoped>
     img{
-        width:300px
+        width:300px;
+        height:200px;
     }
   .listOfProducts {
     width: 100%;

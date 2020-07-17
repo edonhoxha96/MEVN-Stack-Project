@@ -25,9 +25,15 @@ router.beforeEach((to, from, next) => {
       }
     }
     if(to.matched.some(record => record.meta.role == 3)){
-      next({name: 'login'}) 
+      next({
+        name: 'login',
+        params: {nextUrl: to.fullPath}
+      }) 
     }else{
-      next({name: 'loginUser'})
+      next({
+        name: 'loginUser',
+        params: {nextUrl: to.fullPath}
+      })
     }
   } else {
     next() 

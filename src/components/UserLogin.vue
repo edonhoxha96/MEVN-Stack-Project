@@ -48,12 +48,16 @@ export default {
             
             if(!(this.user.firstName == undefined)){
                 this.$store.dispatch('loginUser', this.user)
-                if(this.user.RoleId == 1){
-                this.$router.push('adminPage')
-                }
-                if(this.user.RoleId == 2){
-                // this.$router.push({name:'skPage', params: { id: this.user.StoreId }})
-                this.$router.push('storeKeeperPage')
+                if(this.$route.params.nextUrl != undefined){
+                    this.$router.push(this.$route.params.nextUrl)
+                }else{
+                    if(this.user.RoleId == 1){
+                            this.$router.push('adminPage')
+                    }
+                    if(this.user.RoleId == 2){
+                    // this.$router.push({name:'skPage', params: { id: this.user.StoreId }})
+                    this.$router.push('storeKeeperPage')
+                    }
                 }
             }
         }

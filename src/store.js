@@ -1,11 +1,14 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import axios from 'axios'
+import createPersistedState from "vuex-persistedstate";
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
     state:{
         user:{},
+        products:[],
         cartProducts: [],
         currentProduct: {},
         showModal: false,
@@ -15,6 +18,17 @@ export default new Vuex.Store({
         SET_USER(state, user){
             state.user = user
             window.localStorage.currentUser = JSON.stringify(user)
+        },
+        SET_PRODUCTS(state, products){
+            state.products = products
+        },
+        ADD_STOCK(state, id){
+            var objIndex = state.products.findIndex(obj => obj.id == id)
+             state.products[objIndex].stock += 1
+        },
+        REMOVE_STOCK(state, id){
+            var objIndex = state.products.findIndex(obj => obj.id == id)
+            state.products[objIndex].stock -= 1
         },
         LOGOUT_USER(state){
             state.user = {}
@@ -43,14 +57,30 @@ export default new Vuex.Store({
         logoutUser({commit}){
             commit('LOGOUT_USER')
         },
-        loadCurrentUser({commit}){
+        async loadCurrentUser({commit}){
             let user = JSON.parse(window.localStorage.currentUser)
             commit('SET_USER', user)
+        },
+        async loadProducts({commit}){
+            await axios.get(`http://localhost:3000/emall/api/products`)
+            .then(response => {
+              let products = response.data;
+              commit('SET_PRODUCTS', products)
+            })
+            .catch(err => {
+                console.log(err)
+            })
+        },
+        addStock: ({commit}, id) => {
+            commit('ADD_STOCK',id)
+        },
+        removeStock: ({commit}, id) => {
+            commit('REMOVE_STOCK',id)
         },
         addProduct: (context, product) => {
             context.commit('ADD_PRODUCT', product);
         },
-        removeProduct: (context, index) => {
+        removeProduct: async (context, index) => {
             context.commit('REMOVE_PRODUCT', index);
         },
         currentProduct: (context, product) => {
@@ -67,13 +97,16 @@ export default new Vuex.Store({
         isLoggedIn: state => {
             return !(state.user.firstName == undefined);
         },
-        hasRole: state =>{
+        hasRole: state => {
             return state.user.RoleId
         },
         getProductsInCart: state => state.cartProducts,
         getCurrentProduct: state => state.currentProduct,
         getShowModal: state => state.showModal,
         getPopupCart: state => state.showPopupCart,
-        getUserId: state => state.user.id
-    }
+        getUserId: state => state.user.id,
+    },
+    plugins: [createPersistedState({
+        paths: ['user','cartProducts','products', 'currentProduct']
+    })]
 })

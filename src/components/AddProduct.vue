@@ -22,6 +22,9 @@
         <input class="form-control" type="number" id="rating" placeholder="rating" min="0" max="10" v-model="product.rating"/>
       </div>
       <div class="form-group">
+        <input class="form-control" type="number" id="description" placeholder="description" v-model="product.description"/>
+      </div>
+      <div class="form-group">
         <input class="form-control" type="number" id="stock" placeholder="stock" v-model="product.stock"/>
       </div>
       <div class="form-group">
@@ -83,8 +86,9 @@ export default {
       axios.post(`http://localhost:3000/emall/api/products`, this.product)
       .then(function (response) {
         console.log(response);
-        location.reload()
         })
+        this.$store.dispatch('loadProducts')
+        location.reload()  
     }
   }
 }

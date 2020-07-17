@@ -39,18 +39,22 @@ export default {
     methods:{
        async login(){
             
-                // console.log(this.currentUser)
-                await axios.post(`http://localhost:3000/emall/api/login`, this.currentUser
-                ).then(response => {
-                    this.user = response.data                     
-                })
-                .catch(err => {
-                    this.errorMessage = err.response.data.message
-                })
-            
+            await axios.post(`http://localhost:3000/emall/api/login`, this.currentUser
+            ).then(response => {
+                this.user = response.data                     
+            })
+            .catch(err => {
+                this.errorMessage = err.response.data.message
+            })
+        
             if(!(this.user.firstName == undefined)){
                 this.$store.dispatch('loginUser', this.user)
-                this.$router.push('/')
+                if(this.$route.params.nextUrl != null){
+                    this.$router.push(this.$route.params.nextUrl)
+                }else{
+                    this.$router.push('/')
+                }
+                
             }
         }
     }
