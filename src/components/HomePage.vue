@@ -1,5 +1,5 @@
 <template>
-  <div class="container input-group m-9">
+  <div id="app" class="container input-group m-9">
     <div class="filter">
       <input class="form-control" type="text" v-model="search" placeholder="Search Product" />
       <Categories />

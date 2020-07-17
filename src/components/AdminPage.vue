@@ -1,81 +1,90 @@
-<!-- <template> 
-  <div>
-    <h1>Hello {{user.firstName}}</h1>
-    <div><ul>
-      <li><button @click="logout">LogOut</button></li>
-      <li><router-link :to="{path: '/addStore'}">Add a Store</router-link></li>
-      <li><router-link :to="{path: '/addUser'}">Add a StoreKeeper</router-link></li>
-    </ul></div>
-    
-    <div v-for="store in stores" :key= "store.id">
-      <h3>{{store.name}}</h3>
-      <div v-if="store.logo != null">
-      <img :src="getPath(store.logo)" alt="logo" width="500px" height="400px">
+      <!-- <div>
+        <div>
+          <ul>
+            <li>
+              <button @click="logout">LogOut</button>
+            </li>
+            <li>
+              <router-link :to="{path: '/addStore'}">Add a Store</router-link>
+            </li>
+            <li>
+              <router-link :to="{path: '/addUser'}">Add a StoreKeeper</router-link>
+            </li>
+          </ul>
+        </div>
+
+        <div v-for="store in stores" :key="store.id">
+          <h3>{{store.name}}</h3>
+          <div v-if="store.logo != null">
+            <img :src="getPath(store.logo)" alt="logo" width="500px" height="400px" />
+          </div>
+        </div>
+      </div> -->
+<template>
+  <v-container class="main">
+    <div class="sidepanel">
+      <v-card height="400" class="overflow-hidden">
+        <v-navigation-drawer
+          v-model="drawer"
+          :color="color"
+          :expand-on-hover="expandOnHover"
+          :mini-variant="miniVariant"
+          :right="right"
+          :permanent="permanent"
+          absolute
+          dark
+        >
+          <v-list dense nav class="py-0">
+            <v-list-item two-line :class="miniVariant && 'px-0'">
+              <v-list-item-avatar>
+                <img src="https://randomuser.me/api/portraits/men/81.jpg" />
+              </v-list-item-avatar>
+
+              <v-list-item-content>
+                <v-list-item-title>{{user.firstName}}</v-list-item-title>
+                <v-list-item-subtitle>Admin</v-list-item-subtitle>
+              </v-list-item-content>
+            </v-list-item>
+
+            <v-divider></v-divider>
+
+            <v-list-item v-for="item in items" :key="item.title" router :to="item.route">
+              <v-list-item-icon>
+                <v-icon>{{ item.icon }}</v-icon>
+              </v-list-item-icon>
+
+              <v-list-item-content>
+                <v-list-item-title>{{ item.title }}</v-list-item-title>
+              </v-list-item-content>
+            </v-list-item>
+          </v-list>
+          <template v-slot:append>
+            <div class="pa-2">
+              <v-btn block @click="logout">Logout</v-btn>
+            </div>
+          </template>
+        </v-navigation-drawer>
+        <!-- <div>Here go all stores, admin can view stores and storekeeper</div> -->
+        <div class="storesList">
+          <div class="loop" v-for="store in stores" :key="store.StoreId">
+            <div class="store">
+              <div class="storeName">{{store.name}}</div>
+            </div>
+          </div>
+        </div>
+      </v-card>
+    </div>
+    <div class="store1">
+      <div class="wrapper">
+        <nav class="main-nav">
+          <ul>
+            <li v-for="store in stores" :key="store.StoreId"><a href="#">{{store.name}}</a></li>
+          </ul>
+        </nav>
       </div>
     </div>
-  </div>
-</template> -->
-<template>
-  <v-container>
-    <v-row justify="space-around">
-      <v-col cols="12">
-        <v-select v-model="color" :items="colors" label="Color"></v-select>
-      </v-col>
-
-      <v-switch v-model="drawer" class="ma-2" label="v-model"></v-switch>
-
-      <v-switch v-model="permanent" class="ma-2" label="Permanent"></v-switch>
-
-      <v-switch v-model="miniVariant" class="ma-2" label="Mini variant"></v-switch>
-
-      <v-switch v-model="expandOnHover" class="ma-2" label="Expand on hover"></v-switch>
-
-      <v-switch v-model="background" class="ma-2" label="Background"></v-switch>
-
-      <v-switch v-model="right" class="ma-2" label="Right"></v-switch>
-    </v-row>
-
-    <v-card height="400" class="overflow-hidden">
-      <v-navigation-drawer
-        v-model="drawer"
-        :color="color"
-        :expand-on-hover="expandOnHover"
-        :mini-variant="miniVariant"
-        :right="right"
-        :permanent="permanent"
-        :src="bg"
-        absolute
-        dark
-      >
-        <v-list dense nav class="py-0">
-          <v-list-item two-line :class="miniVariant && 'px-0'">
-            <v-list-item-avatar>
-              <img src="https://randomuser.me/api/portraits/men/81.jpg" />
-            </v-list-item-avatar>
-
-            <v-list-item-content>
-              <v-list-item-title>Application</v-list-item-title>
-              <v-list-item-subtitle>Subtext</v-list-item-subtitle>
-            </v-list-item-content>
-          </v-list-item>
-
-          <v-divider></v-divider>
-
-          <v-list-item v-for="item in items" :key="item.title" link>
-            <v-list-item-icon>
-              <v-icon>{{ item.icon }}</v-icon>
-            </v-list-item-icon>
-
-            <v-list-item-content>
-              <v-list-item-title>{{ item.title }}</v-list-item-title>
-            </v-list-item-content>
-          </v-list-item>
-        </v-list>
-      </v-navigation-drawer>
-    </v-card>
   </v-container>
 </template>
-
 <script>
 import axios from "axios";
 import { mapState } from "vuex";
@@ -87,11 +96,10 @@ export default {
       stores: [],
       // From vuetify admin page
       drawer: true,
-      items: [
-        { title: "Dashboard", icon: "mdi-view-dashboard" },
-        { title: "Photos", icon: "mdi-image" },
-        { title: "About", icon: "mdi-help-box" }
-      ],
+      items: [{title: "View Stores", icon: "mdi-storefront-outline",route: "/stores"},
+              {title: "Add new store", icon: "mdi-folder-plus-outline",route: "/addStore"},
+              {title: "Add store keeper", icon: "mdi-account-plus-outline", route: "/addUser"}
+            ],
       color: "primary",
       colors: ["primary", "blue", "success", "red", "teal"],
       right: false,
@@ -102,12 +110,7 @@ export default {
     };
   },
   computed: {
-    ...mapState(["user"]),
-    bg() {
-      return this.background
-        ? "https://cdn.vuetifyjs.com/images/backgrounds/bg-2.jpg"
-        : undefined;
-    }
+    ...mapState(["user"])
   },
   mounted() {
     this.$store.dispatch("loadCurrentUser");
@@ -133,23 +136,45 @@ export default {
 };
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h3 {
-  margin: 40px 0 0;
+.main{
+  display: flex;
 }
-ul {
-  list-style-type: none;
+.sidepanel{
+  width: 329px;
+}
+.store1{
+  width: 100%;
+  margin-left: 20px;
+}
+.wrapper{
+  display: grid;
+  grid-gap: 20px;
+}
+
+/* Navigation  */
+.main-nav ul {
+  display: grid;
+  grid-gap: 20px;
   padding: 0;
+  list-style: none;
+  grid-template-columns: repeat(4, 1fr);
 }
-li {
-  display: inline-block;
-  margin: 0 10px;
+
+.main-nav a {
+  background: #ddd;
+  display: block;
+  text-decoration: none;
+  padding: 0.8rem;
+  text-align: center;
+  color: #333;
+  text-transform: uppercase;
+  font-size: 1.1rem;
+  box-shadow: 0 1px 5px rgba(104, 104, 104, 0.8);
 }
-a {
-  color: #42b983;
-}
-.hello {
-  background-color: grey;
+
+.main-nav a:hover {
+  background: #333;
+  color: #fff;
 }
 </style>

@@ -15,7 +15,7 @@ import Products from './components/Products';
 import CartCheckout from './components/CartCheckout'
 import ProductDetail from './components/ProductDetail'
 import Payment from './components/Payment'
-
+import Stores from './components/Stores'
 
 export const routes = [
     { path:'/', name:'home', component: HomePage},
@@ -35,5 +35,5 @@ export const routes = [
     { path: '/cart-checkout', name:'cart-checkout', component: CartCheckout},
     { path: '/product-details', name:'product-details', component: ProductDetail},
     { path: '/payment', name:'payment', component: Payment, meta: {requiresAuth: true, role: 3}},
-
+    { path: '/stores', component: Stores},
 ]

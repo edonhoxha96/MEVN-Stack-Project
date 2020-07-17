@@ -7,7 +7,7 @@
         <input class="form-control" type="text" id="name" placeholder="Name" v-model="product.name"/>
       </div>
       <div>
-        <p>My File Selector: <file-select v-model="product.image"></file-select></p>
+        <p>Add product image: <file-select v-model="product.image"></file-select></p>
       </div>
       <div class="form-group">
         <input type="number" placeholder="price" step="0.01" min="0" v-model="product.price">

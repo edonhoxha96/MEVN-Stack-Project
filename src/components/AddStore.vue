@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <h1>Add Category</h1>
+    <h1>Add Store</h1>
     <hr />
     <form @submit="onSubmit">
       <div class="form-group">
