@@ -7,7 +7,7 @@
         <input class="form-control" type="text" id="title" placeholder="Name" v-model="category.name"/>
       </div>
       <div class="form-group">
-          <label for="">Parent Category</label>
+          <label for="parent-category">Parent Category</label>
           <select name="category/subcategory" v-model="category.parentId" >
             <option v-for="category in categories" :key="category.id" :value = "category.id">{{category.name}}</option>
           </select>
@@ -69,9 +69,22 @@ export default {
     font-size: 100%;
     margin-left: 20px;
     color:white;
-    background-color:#2EA169;
+    background-color:#009AD5;
     font-weight: bold;
     }
+    #submit:hover{
+  background-color:#55BCE3;
+}
+.form-group:nth-child(1)  {
+  margin: 1px 1px 1px 1px;
+}
+.form-group:nth-child(2)  {
+  margin: 1px 1px 1px 20px;
+  float: left;
+
+
+}
+
     .container{
         align-self: center;
         /* padding-bottom: -50px; */

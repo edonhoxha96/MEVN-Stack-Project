@@ -13,12 +13,9 @@
             v-model="store.name"
           />
         </div>
-        <div class="fotobutton">
-          <span>
-            Select photo form your device:
-            <file-select v-model="store.logo"></file-select>
-            <img v-bind:src="(file-select)" alt="logo" width="500px" height="400px" />
-          </span>
+        <div>
+          Select photo form your device:
+          <file-select v-model="store.logo" class="select-button"></file-select>
         </div>
         <br />
 
@@ -29,6 +26,11 @@
           value="Create"
         />
       </form>
+      <h4 class="backbutton">
+        <router-link class="nav-link" to="/adminPage">
+          <a>Back</a>
+        </router-link>
+      </h4>
       <br />
     </div>
   </div>
@@ -59,7 +61,6 @@ export default {
         });
     },
   },
-
 };
 </script>
 
@@ -79,29 +80,23 @@ input {
   font-size: 100%;
   margin-left: 20px;
   color: white;
-  background-color: #2ea169;
+  background-color: #009ad5;
   font-weight: bold;
 }
+#submit:hover {
+  background-color: #55bce3;
+}
 .fotobutton {
-  /* float:left; */
-  /* margin: 20px 0px 5px -600px; */
   max-width: fit-content;
 }
+.backbutton {
+  float: left;
+  margin: 0px 10px 0px 0px; 
+}
+
 .container {
   align-self: center;
-  margin: 50px 100px 10px 50px;
-  align-content: center;
-  margin-top: 350px;
-  margin-bottom: -200px;
-  background: #343a40;
-  color: #fff;
-  top: 50%;
-  left: 50%;
-  position: relative;
-  transform: translate(-50%, -50%);
-  box-sizing: border-box;
-  align-content: center;
-  border-radius: 4%;
+
   padding: 70px;
 }
 .addstore {
