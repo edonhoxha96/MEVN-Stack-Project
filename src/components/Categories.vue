@@ -7,12 +7,12 @@
     </div> -->
     <div class="text-center" v-for="category in parentCategories" :key="category.id">
     <v-menu offset-y>
-      <template v-slot:activator="{ click, menu }">
+      <template v-slot:activator="{ on, attre }">
         <v-btn
           color="primary"
           dark
-          v-bind="menu"
-          v-on="click"
+          v-bind="attr"
+          v-on="on"
         >
           {{category.name}}
         </v-btn>
