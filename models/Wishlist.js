@@ -1,5 +1,5 @@
-const Costumer = require('./Costumer')
-const Product = require('./Product')
+// const Costumer = require('./Costumer')
+// const Product = require('./Product')
 
 module.exports = (sequelize, type) => { 
     return sequelize.define(
@@ -14,14 +14,14 @@ module.exports = (sequelize, type) => {
       CostumerId:{
           type: type.INTEGER,
           references: {
-            model: Costumer,
+            model: 'Costumers',
             key: 'id'
           }
       },
       ProductId:{
         type: type.INTEGER,
         references: {
-          model: Product,
+          model: 'Products',
           key: 'id'
         }
       }
