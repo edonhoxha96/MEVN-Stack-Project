@@ -35,4 +35,10 @@ router.put('/api/products/update/:id', (req, res) => {
     .then(products => res.json(products))
 })
 
+router.delete('/api/products/delete/:id', (req,res) => {
+    Product.destroy({
+        where: {id: req.params.id},
+    }).then(console.log("Product deleted"))
+})
+
 module.exports = router

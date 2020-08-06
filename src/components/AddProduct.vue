@@ -10,7 +10,7 @@
         <p>Add product image: <file-select v-model="product.image" required></file-select></p>
       </div>
       <div class="form-group">
-        <input type="number" background:blue, placeholder="price" step="0.01" min="0" v-model="product.price">
+        <input type="number" placeholder="price" step="0.01" min="0" v-model="product.price">
       </div>
       <div class="form-group">
         <input type="number" placeholder="old price" step="0.01" min="0" v-model="product.oldPrice">
@@ -33,12 +33,12 @@
       <div class="form-group">
         <input class="form-control" type="text" id="brand" placeholder="brand" v-model="product.brand"/>
       </div>
-      <div class="form-group">
+      <!-- <div class="form-group">
           <label for="store">Store</label>
           <select name="store" placeholder="store" v-model="product.StoreId" >
             <option v-for="store in stores" :key="store.id" :value = "store.id">{{store.name}}</option>
           </select>
-      </div>
+      </div> -->
       <br/>
       <div class="form-group">
           <label for="category/subcategory">Category</label>
@@ -58,6 +58,7 @@
 <script>
 import axios from 'axios'
 import FileSelect from './FileSelect'
+import {mapState} from 'vuex'
 
 
 export default {
@@ -71,6 +72,12 @@ export default {
       stores:[],
       categories:[]
     }
+  },
+  computed: {
+    ...mapState(["user"])
+  },
+  mounted() {
+    this.$store.dispatch("loadCurrentUser");
   },
   created(){
       axios.get(`http://localhost:3000/emall/api/stores`)
@@ -86,6 +93,7 @@ export default {
   methods:{
     onSubmit (evt) {
       evt.preventDefault()
+      this.product.StoreId = this.user.StoreId
       axios.post(`http://localhost:3000/emall/api/products`, this.product)
       .then(function (response) {
         console.log(response);
@@ -129,5 +137,10 @@ export default {
  
     h1{
         margin-left:150px
+    }
+    
+    select{
+      margin-left: 5px;
+      border: 1px solid gray;
     }
 </style>

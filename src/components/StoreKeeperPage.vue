@@ -5,7 +5,7 @@
       <div class="buttons">
         <ul class="list">
           <li>
-            <router-link :to="{path: '/addProduct'}">Add a Product</router-link>
+            <router-link :to="{name: 'addProduct'}">Add a Product</router-link>
           </li>
           <li>
             <button @click="logout">LogOut</button>
@@ -31,6 +31,7 @@
           <p class="card-text">Product price: {{product.price}}</p>
           <div>Product rating: {{product.rating}}</div>
           <router-link :to="{name: 'editproduct', params: { id: product.id }}">Edit</router-link>
+          <button class= "btn btn-danger" @click="remove(product.id)">Delete</button>
         </div>
       </div>
     </div>
@@ -78,7 +79,16 @@ export default {
       this.$store.dispatch("logoutUser");
       this.$router.push("userLogin");
     },
-    loadStores() {}
+    remove(id) {
+      var result = confirm("Are you sure you want to delete?");
+      if (result){
+      axios.delete(`http://localhost:3000/emall/api/products/delete/${id}`)
+      .then(response => {
+        console.log(response)
+      });
+      location.reload()
+      } 
+    }
   }
 };
 </script>

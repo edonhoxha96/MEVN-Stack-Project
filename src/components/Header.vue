@@ -8,16 +8,25 @@
           </a>
         </div>
         <ul class="navbar-nav">
-          <li class="nav-item">
-            <router-link class="nav-link" to="/login">
-              <a>Login</a>
-            </router-link>
-          </li>
-          <li class="nav-item">
-            <router-link class="nav-link" to="/register">
-              <a>Register</a>
-            </router-link>
-          </li>
+          <div v-if="loggedIn">
+            <li class="nav-item">
+              <router-link class="nav-link" to="/login">
+                <a @click="logout()">Logout</a>
+              </router-link>
+            </li>
+          </div>
+          <div class="nav-item" v-else>
+            <li class="nav-item">
+              <router-link class="nav-link" to="/login">
+                <a>Login</a>
+              </router-link>
+            </li>
+            <li class="nav-item">
+              <router-link class="nav-link" to="/register">
+                <a>Register</a>
+              </router-link>
+            </li>
+          </div>
            <li class="nav-item">
             <router-link class="nav-link" to="/Masterlogin">
               <a>Admin</a>
@@ -30,7 +39,19 @@
 </template>
 
 <script>
-export default {};
+import {mapGetters} from 'vuex'
+export default {
+  computed:{
+    ...mapGetters({
+      loggedIn: 'isLoggedIn'
+    })
+  },
+  methods:{
+    logout(){
+      this.$store.dispatch("logoutUser");
+    }
+  }
+};
 </script>
 
 <style lang="scss" scoped>
@@ -40,5 +61,9 @@ export default {};
 
 .image img {
   width: 100%;
+}
+
+.nav-item{
+  display: flex;
 }
 </style>

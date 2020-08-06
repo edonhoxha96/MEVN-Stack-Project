@@ -22,7 +22,7 @@ export const routes = [
     { path: '/', name:'home', component: Products},
     { path: '/about', component: About},
     { path: '/addCategory', component: AddCategory, meta: {requiresAuth: true, role: 1}},
-    { path: '/AddProduct', component: AddProduct, meta: {requiresAuth: true, role: 2}},
+    { path: '/addProduct', name: 'addProduct', component: AddProduct, meta: {requiresAuth: true, role: 2}},
     { path: '/addStore', component: AddStore, meta: {requiresAuth: true, role: 1}},
     { path: '/addUser', component: AddUser, meta: {requiresAuth: true, role: 1}},
     { path: '/adminPage', name:'adminPage' ,component: AdminPage, meta: {requiresAuth: true, role: 1}},

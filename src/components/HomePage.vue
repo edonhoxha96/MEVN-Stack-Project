@@ -2,7 +2,15 @@
   <div id="app" class="container input-group m-9">
     <div class="filter">
       <input class="form-control" type="text" v-model="search" placeholder="Search Product" />
-      <Categories />
+      <div class="categories">
+        <div v-for="category in parentCategories" :key="category.id"> 
+          <b-dropdown split :text="category.name" @click="filterCategory(category.id)" class="m-2">
+            <div v-for="cats in categories" :key="cats.id">
+            <b-dropdown-item @click="filterCategory(cats.id)" v-if="category.id == cats.parentId">{{cats.name}}</b-dropdown-item>
+            </div>
+          </b-dropdown>
+        </div>
+     </div>
     </div>
     <section class="card-columns content mt-5">
       <div class="card karta" v-for="product in filteredProducts" :key="product.id">
@@ -26,29 +34,45 @@
 
 <script>
 import axios from "axios";
-import Categories from "./Categories";
+import {BDropdown} from "bootstrap-vue";
 
 export default {
   name: "HomePage",
   data() {
     return {
       products: [],
+      categories: [],
+      parentCategories: [],
       search: ""
     };
   },
   components: {
-    Categories
+    'b-dropdown': BDropdown
   },
   created() {
     axios.get(`http://localhost:3000/emall/api/products`).then(response => {
       this.products = response.data;
     });
+
+    axios.get(`http://localhost:3000/emall/api/categories`).then(response => {
+      this.categories = response.data;
+      });
+
+    axios.get(`http://localhost:3000/emall/api/parentcategories`).then(response => {
+      this.parentCategories = response.data;
+      });
   },
   computed: {
     filteredProducts: function() {
       return this.products.filter(product => {
         return product.name.toLowerCase().match(this.search.toLowerCase());
-      });
+      });  
+    },
+    filterCategory: function(cid) {
+      console.log(cid)
+      return this.products.filter(product => {
+        return product.CategoryId.match(cid);
+      }); 
     }
   },
   methods: {

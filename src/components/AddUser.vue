@@ -186,4 +186,9 @@ input {
   padding: 0px 100px 0px 10px;
 }
 
+select{
+    margin-left: 5px;
+    border: 1px solid gray;
+    }
+
 </style>

@@ -2,7 +2,25 @@
 <div>
     <div class="filter">
       <input class="search" type="text" v-model="search" placeholder="Search Product" />
-      <Categories class="categories" />
+      <div class="categories">
+        <div v-for="category in parentCategories" :key="category.id"> 
+          <b-dropdown split :text="category.name" @click="filterCategory(category.id)" class="m-2">
+            <div v-for="cats in categories" :key="cats.id">
+            <b-dropdown-item @click="filterCategory(cats.id)" v-if="category.id == cats.parentId">{{cats.name}}</b-dropdown-item>
+            </div>
+          </b-dropdown>
+        </div>
+     </div>
+     
+        <b-dropdown text="Stores" class="m-2">
+          <div v-for="store in stores" :key="store.id"> 
+          <b-dropdown-item @click="filterStore(store.id)" >{{store.name}}</b-dropdown-item>
+          </div>
+        </b-dropdown>
+     
+      <!-- <div v-for="store in stores" :key="store.id"> 
+          <button class= "btn btn-secondary" @click="filterStore(store.id)">{{store.name}}</button>
+      </div> -->
     </div>
     <div>
     <btn btnColor="btn btn-small btn-info btn-popup"
@@ -55,22 +73,28 @@
 </template>
 
 <script>
+import axios from "axios";
 import { mapGetters, mapActions, mapState } from 'vuex';
 import btn from '@/components/Btn';
 import popupcart from '@/components/Popupcart';
 import maskBg from '@/components/Mask';
-import Categories from '@/components/Categories'
+import {BDropdown} from "bootstrap-vue";
 
 export default {
   components: {
     btn,
     popupcart,
     maskBg,
-    Categories
+    'b-dropdown': BDropdown
   },
   data(){
     return{
-      search:''
+      stores:[],
+      categories: [],
+      parentCategories: [],
+      search:'',
+      category: '',
+      store: ''
     }
   },
   mounted(){
@@ -78,6 +102,19 @@ export default {
       if((this.products.length == 0)){
         this.$store.dispatch('loadProducts')
       }
+  },
+  created() {
+    axios.get(`http://localhost:3000/emall/api/categories`).then(response => {
+      this.categories = response.data;
+      });
+
+    axios.get(`http://localhost:3000/emall/api/parentcategories`).then(response => {
+      this.parentCategories = response.data;
+      });
+    
+    axios.get(`http://localhost:3000/emall/api/stores`).then(response => {
+      this.stores = response.data;
+      });
   },
   computed:{
     ...mapGetters([
@@ -89,7 +126,9 @@ export default {
     ]),
     filteredProducts: function() {
       return this.products.filter(product => {
-        return product.name.toLowerCase().match(this.search.toLowerCase());
+        return product.name.toLowerCase().match(this.search.toLowerCase()) 
+              && product.CategoryId.toString().match(this.category.toString())
+              && product.StoreId.toString().match(this.store.toString());
       });
     }
   },
@@ -98,8 +137,15 @@ export default {
       'addProduct',
       'showOrHiddenPopupCart',
       'currentProduct',
-      'removeStock'
+      'removeStock',
     ]),
+    
+    filterCategory: function(cid) {
+      this.category = cid
+    },
+    filterStore: function(sid) {
+      this.store = sid
+    },
     addProductToCart(product) {
       this.removeFromStock(product.id)
       this.addProduct(product);
@@ -193,5 +239,11 @@ export default {
 }
 .search{
   width:25%;
+}
+.categories{
+  display: flex;
+}
+b-dropdown-item{
+  color: gray;
 }
 </style>

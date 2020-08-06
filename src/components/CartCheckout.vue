@@ -6,7 +6,7 @@
       <li v-for="(product, index) in getProductsInCart" :key="index" class="checkout-product">
         <img :src="getPath(product.image)" alt="" class="product-image">
         <h3 class="product-name">{{ product.name }}</h3>
-        <span class="product-price">R$ {{ product.price }},00 </span>
+        <span class="product-price">€ {{ product.price }} </span>
         <button class="product-remove" @click="remove(index, product.id)">X</button>
       </li>
       </transition-group>
@@ -17,7 +17,7 @@
     </div>
     <div>
     <h3 class="total" v-if="hasProduct()">
-      Total: R$ {{ totalPrice() }}, 00
+      Total: € {{ totalPrice() }}
     </h3>
     <btn btnColor="btn btn-large btn-info"
           @click.native="makePayment()">

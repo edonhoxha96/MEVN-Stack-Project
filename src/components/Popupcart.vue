@@ -2,13 +2,13 @@
   <div class="box">
     <span v-if="!hasProduct()">No products :/</span>
     <div v-for="(product, index) in getProductsInCart"  :key="index" class="box-item">
-      <img :src="product.image" alt="" class="item-thumb">
+      <img :src="getPath(product.image)" alt="" class="item-thumb">
       <h3 class="item-name">{{ product.name }}</h3>
       <span class="item-amount">Amount: 1</span>
-      <span class="item-price">R$ {{ product.price }}, 00</span>
+      <span class="item-price">€ {{ product.price }}</span>
     </div>
     <div class="cart-info" v-if="hasProduct()">
-      <span>Total: R$ {{ totalPrice() }}, 00</span>
+      <span>Total: € {{ totalPrice() }}</span>
       <router-link to="/cart-checkout">
         <btn btnColor="btn btn-small btn-info"
           @click.native="showPopupCart()">
@@ -39,6 +39,12 @@ export default {
     },
     showPopupCart() {
       this.showOrHiddenPopupCart();
+    },
+    getPath(picturepath){
+        if(picturepath == null) {
+          return
+        }
+        return require(`../assets/${picturepath}`)
     },
   },
   computed: {
